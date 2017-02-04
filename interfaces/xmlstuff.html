@@ -1,0 +1,278 @@
+<html>
+<head>
+   <meta name="keywords" content="xml, xslt, wml, voicexml, user interfaces, usability, newmedia, programming, new media">
+   <meta name="description" content="XML, XSLT, WML, VoiceXML examples for Jeanine Meyer's creating user interfaces course, AJAX, Google Calendar API">
+   <title> Examples of XML, XSLT, VoiceXML, and WML </title>
+</head>
+<body>
+<h2>XML, XSL, VoiceXML, WML, Google Calendar API (AJAX) examples</h2>
+<br/>
+Note: IE6/7 etc. appears to be best (sigh). NS6.2 shows something.Try Mozilla, others. Use a simulator (Nokia or OpenWave) to see the results of the wml and xhtml-mp files. <br/>
+<ul>
+<li>Greeting:
+<ul>
+<li>xml source <a href="greeting.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/greeting.xml">greeting.xml</a></li>
+<li>xslt script <a href="greeting.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/greeting.xsl">greeting.xsl </a>. </li>
+</ul> </li>
+<p/>
+<li>Contacts examples:
+<ul>
+<li><a href="contactsref1.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/contactsref1.xml">contactsref1.xml cites contacts1.xsl</a></li>
+<li><a href="contacts1.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/contacts1.xsl">contacts1.xsl</a> </li>
+<li><a href="contactsref2.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/contactsref2.xml">contactsref2.xml cites contacts2.xsl </a>, <a href="contactsref2a.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/contactsref2a.xml">another xml file citing contacts2.xsl</li>
+<li><a href="contacts2.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/contacts2.xsl">contacts2.xsl</a>  </li>
+<li><a href="contactsrefclick.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/contactsrefclick.xml">contactsrefclick.xml cites contactsclick.xml</a></li>
+<li><a href="contactsclick.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/contactsclick.xsl">contactsclick.xsl</a></li>
+<li><a href="xmlrandom.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/xmlrandom.html">(IE only) Uses Javascript to choose between two xsl files randomly</a>. Hit refresh to see one or the other xsl work. </li>
+<li>Using JavaScript (client side scripting) to set up call to xsl to display xml file specific way using a parameter (addParameter method of Processor object)
+<ul>
+<li><a href="parmexample.doc" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/parmexample.doc">Explanation of parameter passing for xml and xsl example with JavaScript</a>
+<li><a href="contactsextra.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/contactsextra.xml">XML file, no xsl cited </a>
+<li><a href="contactsuseparm.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/contactsuseparm.xsl">XSL file with specified parameter</a>
+<li><a href="xmlparms.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/xmlparms.html">For IE: HTML/JavaScript: hardcoded setting of param</a>
+<li><a href="xmlparmsg.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/xmlparmsg.html">For IE: HTML/JavaScript: user sets parameter using link </a>
+<li><a href="xmlparmsmozilla.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/xmlparmsmozilla.html">For Mozilla: HTML/JavaScript: user sets parameter using link, plugging in results into a div. Note also how this code allows for repeat requests.</a>
+<li><a href="xmlparmseither.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/xmlparmseither.html">Works with IE and Mozilla, using try and catch</a>
+</ul>
+<li><a href="includenotes.doc" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/includenotes.doc">Include, substring, sort, named template example</a>
+<ul>
+<li><a href="contactsrefx.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/contactsrefx.xml">contacts xml file </a>
+<li><a href="contactsx.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/contactsx.xsl">main stylesheet file, includes next 2</a>
+<li><a href="date.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/date.xsl">date formatting file </a>
+<li><a href="logo.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/logo.xsl">bird logo file, holds named template </a>
+<li><a href="bird.gif" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/bird.gif">bird image file </a>
+</ul>
+</ul>
+</li>
+<li>Example using two-step (xml to xml and then xml to html) process to alphabetize, dropping leading 'a', 'an', and 'the', making use of substring, sort, and then producing 2 columns, using position. 
+<ul>
+<li><a href="alphabet.doc" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/alphabet.doc">Tutorial/notes on XML/XSLT substring, position, SAXON for manipulating xml tags</a></li>
+<li><a href="picturearchive2.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/picturearchive2.xml">Original xml with titles having 'the', etc.</a> Looking at this in a web browser will not show the results of the transform. This file is transfored using SAXON. The command line is saxon -o fixed.xml -a picturearchive2.xml </li>
+<li><a href="picturepresort.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/picturepresort.xsl">XSL file for splitting titles</a></li>
+<li><a href="fixed.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/fixed.xml">File produced by SAXON and then MODIFIED to point to xsl file </a>
+<li><a href="picturesort.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/picturesort.xsl">XSL file for sorting</a></li>
+<li><a href="fixedcols.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/fixedcols.xml">XML file produced by SAXON and then modified to point to xsl file</a></li>
+<li><a href="picturesortcols.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/picturesortcols.xsl">XSL file for sorting AND putting in columns using position() </a>
+</ul>
+</li>
+<li>Passing parameter to xsl to use to indicate what to sort on
+<ul>
+<li><a href="sortingnotes.doc" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/sortingnotes.doc">Notes on use of parameter for xsl sort</a>
+<li><a href="sortingparmscall.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/sortingparmscall.html">HTML file to get parameter value for xml/xsl transformation </a>
+<li><a href="contactsuseparmforsort.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/contactsuseparmforsort.xsl">XSL file, accepts parameter & uses it for sort field</a>
+<li><a href="contactsextra.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/contactsextra.xml">XML file, no xsl reference, used for parameter test</a>
+</ul>
+</li>
+<li>Parameter passing, CSS (styles), selecting 'frame' and 'photo'.  Limited menu.
+<ul>
+<li><a href="constantparmspictureframe.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/constantparmspictureframe.html">HTML/Javascript passing parameter for xsl</a>
+<li><a href="picturedisplay.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/picturedisplay.xsl">the XSL file (using parameters & styles) </a>
+<li><a href="pictures.css" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/pictures.css">the Cascading style sheet file </a>
+<li><a href="picturearchive.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/picturearchive.xml">XML file holding image file names and titles</a>
+</ul>
+</li>
+<li><b>(IE ONLY. Mozilla does not support external entities.)</b>.General menu (in contrast to previous example): Builds a menu using an xml file that includes (using an external
+entity) the <i>picturearchive.xml</i>. Creates radio button group and select option from
+the xml, using xsl. Application takes the form input and creates a new HTML file using xml and xsl.  Note that the HTML file produced uses CSS to get one image overlapping another.
+<ul>
+<li><a href="picturesandframes.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/picturesandframes.xml">Application using xml/xsl twice for Photo Shop </a>
+<li><a href="presentmenu.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/presentmenu.xsl">The xsl file that builds menu using photo and frame information</a>
+<li><a href="displaypicture.js" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/displaypicture.js">The javascript file included by presentmenu.xsl</a>
+</ul>
+</li>
+<li>Automatic two-phase xml/xsl processing (see also <a href="intwk10a.ppt" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/intwk10a.ppt">Lecture on 2 phase xml/xsl</a>
+<ul>
+<li><a href="books/noteson2phasexsl.doc" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/books/noteson2phasexsl.doc">Two phase xml/xslt processing</a>. Using xml file twice
+<li><a href="books/chooselist.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/books/chooselist.html">The initial html file, javascript to invoke xml/xsl with parameter(s)</a>
+<li><a href="books/books.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/books/books.xml">The xml file that is used twice </a>
+<li><a href="books/preparelistsfix4.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/books/preparelistsfix4.xsl">The first xsl file, produces a file with reference to external javascript</a>
+<li><a href="books/display.js" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/books/display.js">The external javascript file</a>
+<li><a href="books/displayitemsbycat.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/books/displayitemsbycat.xsl">The second xsl file, producing the list of items satisfying a specific choice from a specified category</a>
+</ul>
+</li>
+<p/>
+<li><a href="familynotes.doc" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/familynotes.doc">Family tree examples using xml and xsl: xsl key, called template returning information, local variables, string manipulation, recursive functions, id and refid, modify parameter to template to get indenting (using dashes)</a>
+<p>
+<ul>
+<li><a href="xmlfamilyparm.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/xmlfamilyparm.html">HTML/Javascript file doing xml/xsl transform, with parameters</a></li>
+<li><a href="family.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/family.xml">family.xml</a></li>
+<li><a href="siblings.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/siblings.xsl">siblings.xsl with key, called templates, string manipulation, recursive function</a>
+</p>
+<p>
+<li><a href="familywids.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/familywids.xml">familywids.xml XML example using id and refid. No pointer to xsl file.</a>
+<li><a href="treeformat1.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/treeformat1.xsl">XSL file transforming xml to (different) xml format</a>
+<li><a href="tree.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/tree.xml">Output using saxon: xml in new format</a>
+</p>
+<p>
+<li><a href="familywids2.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/familywids2.xml">XML file pointing to treeformat2.xsl.  Use view source to see xml.</a>
+<li><a href="treeformat2.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/treeformat2.xsl">XSL to transform xml into HTML</a>
+</p>
+</ul>
+</li>
+<p/>
+<li>Links example: construction of a tag, with one value used for the href and another used for the prompt
+<ul>
+<li><a href="links.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/links.xml">links.xml</a></li>
+<li><a href="links.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/links.xsl">links.xsl</a></li>
+</ul>
+</li>
+<p/>
+<li>Soccer scores:
+<ul>
+<li>results file with reference to results.xsl <a href="results.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/results.xml">results.xml</a></li>
+<li><a href="results.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/results.xsl">results.xsl</a> refers to css file</li>
+<li><a href="results.css" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/results.css">results.css</a> </li>
+<p/>
+<li>results file with reference to rankings.xsl
+<a href="rankings.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/rankings.xml">rankings.xml</a></li>
+<li><a href="rankings.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/rankings.xsl">rankings.xsl</a></li>
+<p/>
+<li>results file with no reference <a href="resultsnoref.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/resultsnoref.xml">resultsnoref.xml</a></li>
+<li><a href="resultswml.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/resultswml.xsl">resultswml.xsl</a> (for taking a results-with-no-reference to a wml file)</li>
+</ul>
+</li>
+<p/>
+<li>HTML/JavaScript reading xml to create a form (IE6 only)
+<ul>
+<li><a href="favorite.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/favorite.xml">favorite.xml: a file listing TV shows </a></li>
+<li><a href="xmlchangetest.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/xmlchangetest.html">xmlchangetest.html: changes in xml file in memory only</a>. Keep voting to see alert message with accumulated scores.</li>
+</ul>
+</li>
+<p/>
+<li>php/XML reading xml file: see lecture notes 5b for text of php
+<ul>
+<li><a href="javascript:if(confirm('http://sharon.ns.purchase.edu/jeanine/xmlstuff/phpxmlsax.php  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?'))window.location='http://sharon.ns.purchase.edu/jeanine/xmlstuff/phpxmlsax.php'" tppabs="http://sharon.ns.purchase.edu/jeanine/xmlstuff/phpxmlsax.php">phpxmlsax.php</a></li>
+<li><a href="javascript:if(confirm('http://sharon.ns.purchase.edu/jeanine/xmlstuff/contactsnoref.xml  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?'))window.location='http://sharon.ns.purchase.edu/jeanine/xmlstuff/contactsnoref.xml'" tppabs="http://sharon.ns.purchase.edu/jeanine/xmlstuff/contactsnoref.xml">contactsnoref.xml</a></li>
+</ul>
+</li>
+<p/>
+<li>Small screen browser (xhtml) example
+<ul>
+<li><a href="../origami.html" tppabs="http://newmedia.purchase.edu/~Jeanine/origami.html">Example for small screen browser with .html extension</a> This one works on my cell phone! </li>
+<li><a href="../origami.xhtml" tppabs="http://newmedia.purchase.edu/~Jeanine/origami.xhtml">Example for small screen browser with .xhtml extension</a> This one does NOT work on my cell phone, but does invoke the Nokia simulator and can be used from Openwave.</li>
+</ul>
+</li>
+<li>Search using wml
+<ul>
+<li><a href="lookup.wml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/lookup.wml">lookup.wml</a></li>
+<li><a href="find.wmls" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/find.wmls">find.wmls</a>  </li>
+<li><a href="campus.wbmp" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/campus.wbmp">campus.wbmp</a></li>
+</ul>
+<li>XHTML-MP menu of links to pages, use of access key. NOTE: this doesn't work in regular browser.
+<ul>
+<li><a href="origami.xhtml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/origami.xhtml">XHTML-MP menu of links to pages, access-key </a>.
+<li><a href="wiggler.xhtml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/wiggler.xhtml">simple xhtml page: wiggler </a>
+<li><a href="mbox.xhtml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/mbox.xhtml">simple xhtml page: mbox </a>
+<li><a href="frogface.xhtml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/frogface.xhtml">simple xhtml page: frogface </a>
+<li><a href="cup.xhtml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/cup.xhtml">simple xhtml page: cup </a>
+<li><a href="wbomb.xhtml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/wbomb.xhtml">simple xhtml page: wbomb </a>
+</ul>
+<li>Virtual pet=guy using wml
+<ul>
+<li><a href="petguy.zip" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/petguy.zip">petguy.zip</a></li>
+</ul>
+</li>
+<li>Yet another virtual pet application, with buggy results using OpenWave and (different ones) in Nokia. Openwave doesn't invoke the wmlscript file. Nokia does not recognize the meta tag for the timed event.
+<ul>
+<li><a href="dog.xhtml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/dog.xhtml">XHTML-mp file going to wml file to call the
+wmlscript file </a>.
+</ul>
+</li>
+<p/>
+<li>Bottles of beer on the wall:
+<ul>
+<li><a href="lyrics.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/lyrics.xml">lyrics.xml (start="3") </a></li>
+<li><a href="lyrics.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/lyrics.xsl">lyrics.xsl</a></li>
+</ul>
+</li>
+<p/>
+<li>VoiceXML for tellme studio (examples can be viewed best using IE6)
+<br>
+Tellme studios no longer supports the extensions service for developers. Go to studio.tellme.com and register as a developer. You can then point your account to any example, for instance, http://newmedia.purchase.edu/~Jeanine/tellme/test4.xml for conversation with my family.  Call 1-800-555-VXML, enter your developer id and pin.  For this example, appropriate responses include "Aviva" or "Daniel". If "Aviva", say a number from 1 to 999.
+<ul>
+<li> <a href="../tellme/test4.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/tellme/test4.xml">VoiceXML family example</a> </li>
+<li> <a href="rps.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/rps.xml">VoiceXML Rock paper scissors example </a></li>
+</ul>
+</li>
+<p/>
+<li>Mouseover image swap (does not work directly in NS):
+<ul>
+<li><a href="pics.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/pics.xml">pics.xml</a> lists two image files</li>
+<li><a href="mouseover.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/mouseover.xsl">mouseover.xsl</a> </li>
+<li>produced with preceeding files using saxon, works in NS6.2 and IE6: <a href="stuff.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/stuff.html"> stuff.html</a>. </li>
+<li><a href="Liz-book.jpg" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/Liz-book.jpg">Liz-book.jpg</a></li>
+<li><a href="Darcy3.jpg" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/Darcy3.jpg">Darcy3.jpg</a></li>
+</ul>
+</li>
+<li>Mouseover image swap with external Javascript function
+<ul>
+<li><a href="pics2.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/pics2.xml">pics2.xml</a> </li>
+<li><a href="mouseover2.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/mouseover2.xsl">mouseover2.xsl</a></li>
+<li>produced using saxon: <a href="stuff2.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/stuff2.html">stuff2.html</a></li>
+<li><a href="movein.js" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/movein.js">movein.js</a></li>
+</ul>
+</li>
+<li>Mouseover image swap with sets of images (and external javascript file)
+<ul>
+<li><a href="picssets.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/picssets.xml">picssets.xml</a></li>
+<li><a href="mouseoversets.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/mouseoversets.xsl">mouseoversets.xsl</a></li>
+<li>produced using saxon: <a href="swap.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/swap.html">swap.html</a></li>
+<li><a href="moveins.js" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/moveins.js">moveins.js</a></li>
+<li><a href="soccer1.jpg" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/soccer1.jpg">soccer1.jpg</a></li>
+<li><a href="soccer2.jpg" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/soccer2.jpg">soccer2.jpg</a></li>
+</ul>
+</li>
+<li>Mouseover and clicking for larger picture, caption
+<ul>
+<li><a href="picssetsexpanded.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/picssetsexpanded.xml">picssetsexpanded.xml: sets of pictures + captions </a></li>
+<li><a href="makebig.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/makebig.xsl">makebig.xsl: adds function of clicking for larger picture, caption </a></li>
+<li><a href="moveinsplus.js" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/moveinsplus.js">moveinsplus.js</a></li>
+</ul>
+</li>
+<li> Flash and XML examples. <a href="flashxml.doc" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/flashxml.doc">Notes/tutorial on Flash use of dynamically loaded xml</a>
+<ul>
+<li><a href="xmltest2.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/xmltest2.html">Contacts list </a>. Download <a href="xmltest2.fla" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/xmltest2.fla">xmltest2.fla</a> and <a href="contacts.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/contacts.xml">contacts.xml</a></li>
+<li><a href="xmlresults.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/xmlresults.html">Soccer scores (again) </a>. Download <a href="xmlresults.fla" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/xmlresults.fla">xmlresults.fla</a> and <a href="resultsnoref.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/resultsnoref.xml">resultsnoref.xml</a></li>
+<li><a href="xmlfamily.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/xmlfamily.html">xmlfamily.html</a>. Download <a href="xmlfamily.fla" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/xmlfamily.fla">xmlfamily.fla</a> and <a href="scenesnoref.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/scenesnoref.xml">scenesnoref.xml<a></li>
+</ul>
+</li>
+<li> Virtual Pet
+<ul>
+<li><a href="virtualpet.doc" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/virtualpet.doc">Description of virtual pet</a>
+<li><a href="vdog.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/vdog.xml">Virtual Dog content (vdog.xml) </a></li>
+<li><a href="virtual.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/virtual.xsl">Transforms vdog.xml (or similar xml files) into html</li>
+<li><a href="vdogm.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/vdogm.xml">Virtual Dog content (vdogm.xml)</a> pointing to <a href="virtualm.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/virtualm.xsl">virtualm.xsl</a>. This transformation works on both IE and Mozilla. It omits putting the Javascript in a comment
+(the standard practice to hide code from older browsers, which is being overly cautious in this situation since the assumption here is that the browsers understand xml/xslt.)  The handling of comments was explained to me by Alex Hecht, <a href="javascript:if(confirm('http://www.mozilla.org/projects/xslt  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?'))window.location='http://www.mozilla.org/projects/xslt'" tppabs="http://www.mozilla.org/projects/xslt">peer of the XSLT module
+in Mozilla</a> when I <a href="javascript:if(confirm('http://bugzilla.mozilla.org/show_bug.cgi?id=222775  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?'))window.location='http://bugzilla.mozilla.org/show_bug.cgi?id=222775'" tppabs="http://bugzilla.mozilla.org/show_bug.cgi?id=222775">posted bug 222775</a>.
+</li>
+<li><a href="vdog.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/vdog.html">vdog.html (produced using saxon) </a></li>
+<li>Use ftp (go to http://newmedia.purchase.edu/interfaces) and download image files </li>
+</ul>
+</li>
+<li> Presenting and checking requirements for major
+<ul>
+<li><a href="major0.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/major0.xml">Toy xml file for tiny major, calls makemajor0.xsl </a></li>
+<li><a href="makemajor0.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/makemajor0.xsl">Formatting data for display only </a></li>
+<li><a href="major0.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/major0.html">HTML file produced using saxon with above two files </a></li>
+<li><a href="major.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/major.xml">Toy xml file for tiny major, calls makemajor1.xsl </a></li>
+<li><a href="makemajor1.xsl" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/makemajor1.xsl">Formatting data into form with checkboxes </a></li>
+<li><a href="major.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/major.html">HTML file produced using saxon </a></li>
+<li><a href="make.js" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/make.js">JavaScript that checks fulfillment of requirements. Still has some debugging alerts.</a></li>
+</ul>
+</li>
+<li>Examples of xml and Flash, including using list box component. Use Internet Explorer to download fla files (Mozilla tries to display the file.)
+<ul>
+<li><a href="schools.xml" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/schools.xml">XML file: information on schools </a>
+<li>Simple demo of use of listbox: dynamically adding items is named listbox_test1.fla
+<li> fla files are in this folder named xmlandlisttest1.fla, through xmlandlisttest8.fla
+</ul>
+<li>Google Calendar API, AJAX, DHTML examples
+<ul>
+<li><a href="../calendar/index.htm" tppabs="http://newmedia.purchase.edu/~Jeanine/calendar">Using Google Calendar API basic feed and AJAX, list events</a></li>
+<li><a href="../calendar/calwithgooglecalfancy4.html" tppabs="http://newmedia.purchase.edu/~Jeanine/calendar/calwithgooglecalfancy4.html">Using Google Calendar API full feed and AJAX, using JavaScript to dynamically construct the month calendar, with mouse overs</a> </li> 
+<li><a href="../calendar/googlecalendar.doc" tppabs="http://newmedia.purchase.edu/~Jeanine/calendar/googlecalendar.doc">Tutorial for Google API, Ajax, sort and display events, dynamic construction of calendar and mouse overs</a></li> 
+</ul>
+</ul>
+<a href="../index.html" tppabs="http://newmedia.purchase.edu/~Jeanine/index.html">Return to Jeanine's Academic Activities </a>
+</body>
+</html>

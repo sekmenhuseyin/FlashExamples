@@ -1,0 +1,22 @@
+<html> <head> <script type="text/javascript">
+var xslt = new ActiveXObject("Msxml2.XSLTemplate");
+var xslDoc = new ActiveXObject("Msxml2.FreeThreadedDOMDocument");
+var xslProc;
+xslDoc.async = false;
+xslDoc.resolveExternals = false;
+xslDoc.load("contactsuseparm.xsl"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/contactsuseparm.xsl*/);
+xslt.stylesheet = xslDoc;
+var xmlDoc = new ActiveXObject("Msxml2.DOMDocument");
+xmlDoc.async = false;
+xmlDoc.resolveExternals = false;
+xmlDoc.load("contactsextra.xml"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/contactsextra.xml*/);
+xslProc = xslt.createProcessor();
+xslProc.input = xmlDoc;
+xslProc.addParameter("subj", "mathematics");
+xslProc.transform();
+document.write(xslProc.output);
+
+</script>  </head>  
+<body>
+</body>
+</html>

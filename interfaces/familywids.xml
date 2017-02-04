@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+<people>
+  <person>
+	<name id="1">Jeanine</name>
+        <par refid="17"/>
+        <par refid="18"/>
+  </person>
+  <person>
+	<name id="2">Anne</name>
+         <par refid="17"/>
+        <par refid="18"/>
+  </person>
+<person>
+	<name id="3">Daniel</name>
+       <par refid="1"/>
+        <par refid="5"/>
+  </person>
+<person>
+	<name id="4">Aviva</name>
+        <par refid="1"/>
+        <par refid="5"/>
+  </person>
+<person>
+	<name id="5">Ken</name>
+	<par>Ethyle</par>
+	<par>Fred</par>
+</person>
+<person>
+	<name id="6">Eduardo</name>
+	<par>Aledar</par>
+	<par>Conseula</par>
+</person>
+<person>
+	<name id="7">David</name>
+        <par refid="2"/>
+        <par refid="6"/>
+  </person>
+<person>
+	<name id="8">Tom</name>
+       <par refid="2"/>
+        <par refid="6"/>
+  </person>
+<person>
+	<name id="9">Debi</name>
+       <par refid="2"/>
+        <par refid="6"/>
+  </person>
+<person>
+	<name id="10">Corey</name>
+	<par refid="9"/>
+	<par refid="12"/>
+</person>
+<person>
+	<name id="11">Joshua</name>
+	<par refid="9"/>
+	<par refid="12"/>
+</person>
+<person>
+	<name id="12">Bernardo</name>
+	<par>Anita</par>
+	<par>Felez</par>
+</person>
+<person>
+	<name id="13">OrphanAnnie</name>
+</person>
+<person>
+  <name id="14">Funny</name>
+  <par refid="16"/>
+  <par refid="15"/>
+</person>
+<person>
+  <name id="15">Moe</name>
+</person>
+<person>
+   <name id="16">curly</name>
+</person>
+<person>
+   <name id="17">Esther</name>
+</person>
+<person>
+   <name id="18">Joseph</name>
+</person>
+</people>

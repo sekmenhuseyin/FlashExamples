@@ -1,0 +1,333 @@
+<html><head><title>Monthly calendar with information from google calendar</title>
+<link rel="stylesheet" href="style2.css" tppabs="http://newmedia.purchase.edu/~Jeanine/calendar/style2.css" type="text/css" />
+<script>
+<!-- Begin
+//  SET ARRAYS
+var day_of_week = new Array('Sun','Mon','Tue','Wed','Thu','Fri','Sat');
+var month_of_year = new Array('January','February','March','April','May','June','July','August','September','October','November','December');
+
+//  DECLARE AND INITIALIZE VARIABLES
+var Calendar = new Date();
+
+var year = Calendar.getFullYear();	    // Returns year
+
+var month = Calendar.getMonth();    // Returns month (0-11)
+var today = Calendar.getDate();    // Returns day (1-31)
+var weekday = Calendar.getDay();    // Returns day (1-31)
+function padding(sday) {
+ sday = sday.length==1 ? '0'+sday : sday;
+ return sday;
+}
+
+function makegdate(yr,mn,dy) {
+smonth = String(mn+1);
+smonth = padding(smonth);
+sday = String(dy);
+sday = padding(sday);
+var gdate = String(yr)+'-'+smonth+'-'+sday;
+return gdate;
+}
+var part1 = "<span class='booked'><a onMouseOver='showitem(";
+var part2 = ");' onMouseOut='showitem(-1);' href='#'>";
+var notyetscanned = 0;
+gtoday = makegdate(year,month,today);
+
+var DAYS_OF_WEEK = 7;    // "constant" for number of days in a week
+var DAYS_OF_MONTH = 31;    // "constant" for number of days in a month
+var cal;    // Used for printing
+
+Calendar.setDate(1);    // Start the calendar day at '1'
+// Calendar.setMonth(month);    // Start the calendar month at now
+
+
+/* VARIABLES FOR FORMATTING
+NOTE: You can format the 'BORDER', 'BGCOLOR', 'CELLPADDING', 'BORDERCOLOR'
+      tags to customize your calendar's look. */
+
+var TR_start = '<TR>';
+var TR_end = '</TR>';
+var highlight_start = '<TD WIDTH="30"><TABLE CELLSPACING=0 BORDER=1 BGCOLOR=DEDEFF BORDERCOLOR=CCCCCC><TR><TD WIDTH=20><B><CENTER>';
+var highlight_end   = '</CENTER></TD></TR></TABLE></B>';
+var TD_start = '<TD WIDTH="30"><CENTER>';
+var TD_end = '</CENTER></TD>';
+
+
+
+function producecalendar() {
+/* BEGIN CODE FOR CALENDAR
+NOTE: You can format the 'BORDER', 'BGCOLOR', 'CELLPADDING', 'BORDERCOLOR'
+tags to customize your calendar's look.*/
+
+cal =  '<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=0 BORDERCOLOR=BBBBBB><TR><TD>';
+cal += '<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=2>' + TR_start;
+cal += '<TD COLSPAN="' + DAYS_OF_WEEK + '" BGCOLOR="#EFEFEF"><CENTER><B>';
+cal += month_of_year[month]  + '   ' + year + '</B>' + TD_end + TR_end;
+cal += TR_start;
+
+// creates day headings
+// LOOPS FOR EACH DAY OF WEEK
+for(index=0; index < DAYS_OF_WEEK; index++)
+{
+
+// BOLD TODAY'S DAY OF WEEK
+if(weekday == index) {
+cal += TD_start + '<B>' + day_of_week[index] + '</B>' + TD_end;}
+
+// PRINTS DAY
+else {
+cal += TD_start + day_of_week[index] + TD_end;}
+}
+
+// finish off day headings
+cal += TD_end + TR_end;
+cal += TR_start;
+
+// FILL IN BLANK GAPS UNTIL TODAY'S DAY
+for(index=0; index < Calendar.getDay(); index++) {
+cal += TD_start + '  ' + TD_end;  }
+
+
+// LOOPS FOR EACH DAY IN CALENDAR
+for(index=0; index < DAYS_OF_MONTH; index++)
+{
+if( Calendar.getDate() > index )
+{
+
+  // RETURNS THE NEXT DAY TO PRINT
+  week_day =Calendar.getDay();
+
+  // START NEW ROW FOR FIRST DAY OF WEEK
+  if(week_day == 0)  {
+  cal += TR_start; }
+
+  if(week_day != DAYS_OF_WEEK)
+  {
+
+  // SET VARIABLE INSIDE LOOP FOR INCREMENTING PURPOSES
+  var day  = Calendar.getDate();
+
+  // HIGHLIGHT TODAY'S DATE  and determine if booked
+  cdate = makegdate(year,month,day);
+  whichspan = "<span class='plain'>"
+  whichspanend = "</span>";
+  cont = true;  //do check at least once
+  while ((notyetscanned<itemsstuffs.length) && cont) {
+     itemfull = itemsstuffs[notyetscanned];
+     itemd = itemfull.substr(22,10);
+
+     if (cdate == itemd) {
+
+     		whichspan = part1+notyetscanned+part2;
+            whichspanend = "</a></span>";
+
+     		cont = false;}
+     else if (cdate < itemd) {whichspan = "<span class='plain'>"; cont = false;}
+     else {notyetscanned++;}
+  }
+
+  //whichspan is now set
+  if( today==Calendar.getDate() ) {
+  cal += highlight_start + whichspan+day+whichspanend+ highlight_end + TD_end; }
+
+  // PRINTS DAY
+  else {
+  cal += TD_start + whichspan+day+whichspanend + TD_end;  }
+  }
+
+  // END ROW FOR LAST DAY OF WEEK
+  if(week_day == DAYS_OF_WEEK)  {
+  cal += TR_end;  }
+  }
+
+  // INCREMENTS UNTIL END OF THE MONTH
+  // This will take care of 28 and 30 day months
+
+  Calendar.setDate(Calendar.getDate()+1);
+
+}// end for loop
+
+cal += '</TD></TR></TABLE></TABLE>';
+
+
+//  PRINT CALENDAR
+document.getElementById("monthly").innerHTML = cal;
+} // ends producecalendar function
+
+
+function showitem(item) {
+if (item>=0) {
+   item = itemsstuffs[item].substr(4); //removes the initial <li> tag
+   item = item.replace('</li>','');
+   }
+else {
+   item = ""; }
+	document.getElementById("feature").innerHTML = item;
+}
+//this is part for google calendar
+
+
+var RSSRequestObject = false; // XMLHttpRequest Object
+var Backend = 'http://newmedia.purchase.edu/~Jeanine/calendar/eventrss.php'; // Backend url
+
+window.setInterval("update_timer()", 600000); // update the data every 10 mins
+
+// one of the next two statements will set up the RSSRequestObject, depending on the browser.
+if (window.XMLHttpRequest) // try to create XMLHttpRequest
+	RSSRequestObject = new XMLHttpRequest()
+else
+if (window.ActiveXObject)	// if ActiveXObject use the Microsoft.XMLHTTP
+	RSSRequestObject = new ActiveXObject("Microsoft.XMLHTTP")
+else
+  alert("Cannot setup call to access google calendar using this browser.");
+
+/*
+* onreadystatechange function
+*/
+function ReqChange() {
+
+	// If data received correctly
+	if (RSSRequestObject.readyState==4) {
+
+		// if data is valid
+		if (RSSRequestObject.responseText.indexOf('invalid') == -1)
+		{
+			// Parsing Feeds
+			var node = RSSRequestObject.responseXML.documentElement;
+
+			// Get the calendar title
+			var title = node.getElementsByTagName('title').item(0).firstChild.data;
+
+			content = '<div class="channeltitle">'+title+'</div>';
+
+			// Browse events
+			var items = node.getElementsByTagName('entry');
+			if (items.length == 0) {
+				content += '<ul><li><div class=error>No events</div></li></ul>';
+			} else {
+			    var itemsstuff = Array();
+
+
+				for (var n=items.length-1; n >= 0; n--)
+				{
+					var itemTitle = items[n].getElementsByTagName('title').item(0).firstChild.data;
+					var Summary = items[n].getElementsByTagName('summary').item(0).firstChild.data;
+
+		//var itemContent = items[n].getElementsByTagName('content').item(0).firstChild.data;
+
+					try
+					{
+						var subdate = items[n].getElementsByTagName('published').item(0).firstChild.data;
+
+						subdate = subdate.substr(0,10);
+
+						//if there is a when in the summary, use the following date for the date
+						var datepl = Summary.indexOf('When:');
+						if (datepl>=0) {
+							subdate = Summary.substr(datepl+6,10);
+						}
+						else {
+						    datepl = Summary.indexOf('First start:');
+						    if (datepl>=0) {
+						    subdate = Summary.substr(datepl+13,10);
+									}
+					        }
+					    var itemPubDate = '<font color=black>'+subdate+':&nbsp; ';
+					}
+					catch (e)
+					{
+						var itemPubDate = '';
+					}
+
+					itemsstuff.push('<li>'+itemPubDate+'</font>'+itemTitle+'<br> '+Summary+'</li><br>');
+
+
+				}
+       //itemsstuff has elements corresponding to each entry's subdate of published and title
+       //entries prior to today were not stored
+           itemsstuffs = itemsstuff.sort();
+               producecalendar();
+
+               content += '<ul>';
+               for (var n=0;n<itemsstuffs.length;n++) {
+                  content += itemsstuffs[n];
+               }
+				content += '</ul>';
+			}
+			// Display the result
+			document.getElementById("ajaxreader").innerHTML = content;
+
+			// Tell the reader the everything is done
+			document.getElementById("status").innerHTML = "Calendar items read.";
+
+		}
+		else {
+			// Tell the reader that there was error requesting data
+			document.getElementById("status").innerHTML = "<div class=error>Error requesting data.<div>";
+		}
+
+		HideShow('status');
+	}
+
+}
+
+/*
+* Main AJAX RSS reader request
+*/
+function RSSRequest() {
+
+	// change the status to requesting data
+	HideShow('status');
+	document.getElementById("status").innerHTML = "Requesting data ...";
+if (RSSRequestObject) {
+	// Prepare the request
+	RSSRequestObject.open("GET", Backend , true);
+	// Set the onreadystatechange function
+	RSSRequestObject.onreadystatechange = ReqChange;
+	// Send
+	RSSRequestObject.send(null);
+	}
+}
+
+/*
+* Timer
+*/
+function update_timer() {
+	RSSRequest();
+}
+
+
+function HideShow(id){
+	var el = document.getElementById(id);
+	if(el.style.display=="none")
+	el.style.display='';
+	else
+	el.style.display='none';
+}
+
+/*
+function GetObject(id){
+	var el = document.getElementById(id);
+	return(el);
+}
+
+*/
+
+//  End -->
+
+
+
+</script>
+
+<body onload="RSSRequest();">
+
+<p>
+<div id="monthly"></div>
+<div id="feature"></div>
+<div id="status" style="display:none"></div>
+</p>
+<p></p>
+<b>All Events</b><br>
+<div id="ajaxreader"></div>
+
+</body>
+</html>

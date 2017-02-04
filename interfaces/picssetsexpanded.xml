@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="makebig.xsl" type="text/xsl"?>
+
+<sets>
+ <set>
+  <oimage>Liz-book.jpg</oimage>
+  <nimage>Darcy3.jpg</nimage>
+  <caption>This is Colin Firth playing Mr. Darcy in the production of Pride and Prejudice. </caption>
+ </set>
+ <set>
+  <oimage>soccer1.jpg</oimage>
+  <nimage>soccer2.jpg</nimage>
+  <caption>In the World Cup 2002, the USA beats Portugal in the first round.</caption>
+ </set>
+</sets>

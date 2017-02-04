@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Data test </title>
+<script>
+function completestory() {
+var line1 ="I like ";
+var line2  =". <br> The costumes are ";
+var line3 = "!";
+var sportx = document.f.sport.value;
+// next line used in debugging
+// alert("sportx is "+sportx.substr(0,5));
+story = line1+sportx+line2+document.f.ct.value+line3;
+if (sportx.substr(0,5)=="speed") {
+  story = story +"<img src='speedskatingpic.jpg'/*tpa=http://newmedia.purchase.edu/~Jeanine/speedskatingpic.jpg*//>";
+}
+else if (sportx.substr(0,5)=="snowb") {
+	story = story + "<img src='snowboardpic.jpg'/*tpa=http://newmedia.purchase.edu/~Jeanine/snowboardpic.jpg*//>";
+}
+//could add more if tests with more pictures
+
+
+document.write(story);
+
+}
+</script>
+</head>
+<body>
+<p> Olympics </p>
+<form name="f" onsubmit="completestory();">
+What is your favorite event?
+<input type="text" name="sport" value="     "/>
+<br/>
+The costumes are <input type="text" name="ct" value="    "/>
+<br/>
+<input type="submit" value="submit"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html><head><title>XML read test</title>
+<script>
+var xml = new ActiveXObject("Microsoft.XMLDOM");
+xml.async = false;
+xml.load("favorite.xml"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/favorite.xml*/);
+var objroot = xml.documentElement;
+var shownames = objroot.getElementsByTagName("show/show_title");
+var showscores=objroot.getElementsByTagName("show/score");
+document.write("Which TV show do you like the best? <br>");
+document.write("<form name='f' onsubmit='return update()'>");
+var n = shownames.length;
+var i;
+for (i=0;i<n;i++) {
+ var stitle = shownames[i].text;
+ document.write("<input type='radio' name='shows' id='shows' value='"+stitle+"'>");
+ document.write(stitle);
+}
+document.write("<br><input type='submit' value='Vote'></form>");
+function update() {
+ for (i=0;i<n;i++){
+    if (document.f.shows[i].checked){
+  showscores[i].text=1 + parseInt(showscores[i].text);         xml.documentElement.getElementsByTagName("show/score").item(i).text=showscores[i].text;
+objroot = xml.documentElement; 
+showscores=objroot.getElementsByTagName("show/score");
+              }
+  }
+var scores ="Totals: ";
+for (i=0;i<n;i++) {
+ scores = scores + shownames[i].text+": "+showscores[i].text+" ";
+}
+alert(scores);
+return false;
+}
+</script></head>
+<body>
+Thank you!
+
+</body>
+</html>

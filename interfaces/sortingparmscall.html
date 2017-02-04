@@ -1,0 +1,72 @@
+<html> <head> <script type="text/javascript">
+
+
+function outputgroup(subject){
+  // load the xslt file
+
+try {
+var xslt = new ActiveXObject("Msxml2.XSLTemplate");
+var xslDoc = new ActiveXObject("Msxml2.FreeThreadedDOMDocument");
+var xslProc;
+xslDoc.async = false;
+xslDoc.resolveExternals = false;
+xslDoc.load("contactsuseparmforsort.xsl"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/contactsuseparmforsort.xsl*/);
+xslt.stylesheet = xslDoc;
+var xmlDoc = new ActiveXObject("Msxml2.DOMDocument");
+xmlDoc.async = false;
+xmlDoc.resolveExternals = false;
+xmlDoc.load("contactsextra.xml"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/contactsextra.xml*/);
+xslProc = xslt.createProcessor();
+xslProc.input = xmlDoc;
+xslProc.addParameter("sortby", subject);
+xslProc.transform();
+document.write(xslProc.output);
+}
+catch(e) {
+try{
+var xslStylesheet;
+var xsltProcessor = new XSLTProcessor();
+var myDOM;
+var xmlDoc;
+  var myXMLHTTPRequest = new XMLHttpRequest();
+  myXMLHTTPRequest.open("GET", "contactsuseparmforsort.xsl"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/contactsuseparmforsort.xsl*/, false);
+  myXMLHTTPRequest.send(null);
+
+  xslStylesheet = myXMLHTTPRequest.responseXML;
+  xsltProcessor.importStylesheet(xslStylesheet);
+
+  // load the xml file
+  myXMLHTTPRequest = new XMLHttpRequest();
+  myXMLHTTPRequest.open("GET", "contactsextra.xml"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/contactsextra.xml*/, false);
+  myXMLHTTPRequest.send(null);
+  xmlDoc = myXMLHTTPRequest.responseXML;
+
+  // set the parameter using the parameter passed to the outputgroup function
+  xsltProcessor.setParameter(null,"sortby",subject);
+  var fragment = xsltProcessor.transformToFragment(xmlDoc,document);
+  document.getElementById("answer").innerHTML = "";
+   myDOM = fragment;
+  document.getElementById("answer").appendChild(fragment);
+}
+catch(e) {
+  alert("Unable to do xml/xsl processing");
+}
+}
+
+}
+
+</script>  </head>
+<body>
+<a href="javascript:outputgroup('name');">name</a><br/>
+<a href="javascript:outputgroup('email');">email </a><br/>
+<a href="javascript:outputgroup('discipline');">discipline</a><br/>
+
+<div id="answer">
+</div>
+<br/> <br/>
+<a href="sortingparmscall.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/sortingparmscall.html">Repeat</a>
+</body>
+</html>
+
+</body>
+</html>

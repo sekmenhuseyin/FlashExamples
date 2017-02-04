@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="siblings.xsl" type="text/xsl"?>
+<people>
+  <person>
+	<name>Jeanine</name>
+        <par>Joseph</par>
+        <par>Esther</par>
+  </person>
+  <person>
+	<name>Anne</name>
+        <par>Joseph</par>
+        <par>Esther</par>
+  </person>
+<person>
+	<name>Daniel</name>
+        <par>Jeanine</par>
+        <par>Ken</par>
+  </person>
+<person>
+	<name>Aviva</name>
+        <par>Jeanine</par>
+        <par>Ken</par>
+  </person>
+<person>
+	<name>Ken</name>
+	<par>Ethyle</par>
+	<par>Fred</par>
+</person>
+<person>
+	<name>Eduardo</name>
+	<par>Aledar</par>
+	<par>Conseula</par>
+</person>
+<person>
+	<name>David</name>
+        <par>Anne</par>
+        <par>Eduardo</par>
+  </person>
+<person>
+	<name>Tom</name>
+        <par>Anne</par>
+        <par>Eduardo</par>
+  </person>
+<person>
+	<name>Debi</name>
+        <par>Anne</par>
+        <par>Eduardo</par>
+  </person>
+<person>
+	<name>Corey</name>
+	<par>Debi</par>
+	<par>Bernardo</par>
+</person>
+<person>
+	<name>Joshua</name>
+	<par>Debi</par>
+	<par>Bernardo</par>
+</person>
+<person>
+	<name>Bernardo</name>
+	<par>Anita</par>
+	<par>Felez</par>
+</person>
+<person>
+	<name>Orphan Annie</name>
+</person>
+<person>
+  <name>Funny</name>
+  <par>Curly</par>
+  <par>Moe</par>
+</person>
+<person>
+  <name>Moe</name>
+  <par>Jos</par>
+</person>
+</people>

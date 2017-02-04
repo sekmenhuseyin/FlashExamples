@@ -1,0 +1,115 @@
+<html>
+<head><title>Pet</title>
+<script language="JavaScript">
+
+<!--
+var weight;
+var tid;
+var feedDate ;
+var feedTime ;
+
+function seconds_elapsed () 
+  { 
+      var date_now = new Date (); 
+      var time_now = date_now.getTime (); 
+      var time_diff = time_now - feedTime; 
+      var elapsed = Math.floor ( time_diff / 1000 ); 
+      return ( elapsed ); 
+}
+
+function change() {
+ var secspast;
+ secspast = seconds_elapsed();
+ 
+ if (secspast> 10) {
+    document.forma.condition.value = "dog hungry";
+    weight = weight - 1;
+  }
+ else {
+    document.forma.condition.value = "dog okay";
+  }
+ document.forma.dogweight.value = weight;
+
+if (weight>125) {
+           if (weight>150) {
+		document.forma.condition.value ="dog died";
+                document.dogpic.src="fatdeaddog.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/fatdeaddog.gif*/;
+                stopgame();
+           }
+           else {
+               document.forma.condition.value ="dog getting too fat";
+               document.dogpic.src="fatdog.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/fatdog.gif*/;
+           }
+          } 
+if (weight < 80) {
+       if (weight<60) {
+               document.forma.condition.value="dog died";
+               document.dogpic.src="thindead.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/thindead.gif*/;
+               stopgame();
+              }
+           else {
+               document.dogpic.src="thindog.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/thindog.gif*/;
+            document.forma.condition.value="dog getting too thin";
+           }
+         }
+
+}
+
+function feeddog() {
+  feedDate = new Date();
+  feedTime = feedDate.getTime();
+  weight = weight + 10;
+  document.forma.condition.value = "dog fed";
+ 
+}
+
+
+function startgame() {
+  weight=100;
+  feeddog();
+ document.dogpic.src="dog.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dog.gif*/;
+  tid=setInterval('change()',1000);
+}
+
+
+function stopgame() {
+window.clearInterval(tid);
+}
+function petdog() {
+var e;
+var p;
+var r;
+e = seconds_elapsed();
+p = 1-(e/20);
+if (p<.1) { 
+   p = .1;
+}
+r = Math.random();
+if (r<p) {
+  document.dogpic.src="wag.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/wag.gif*/;
+}
+else {
+ document.dogpic.src="mean.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/mean.gif*/;
+
+}
+}
+
+//--> 
+
+</script>
+</head>
+<body>
+<a href="javascript:startgame()">Start (re-start)</a> <p>
+<a href="javascript:stopgame()">Stop </a> <p>
+<a href="javascript:feeddog()">Feed dog </a>
+<p>
+<a href="javascript:petdog()">Pet dog </a> <p>
+<img src="dog.gif" tppabs="http://newmedia.purchase.edu/~Jeanine/dog.gif" name="dogpic"><p>
+<form name="forma">
+Condition <input type=text name="condition" value="initial"><br>
+Weight <input type=text name="dogweight" value="not set">
+
+
+</form>
+</body>
+</html>

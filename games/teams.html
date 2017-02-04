@@ -1,0 +1,27 @@
+<html><head><title>Form element test </title>
+<script>
+var teams = new Array("Yankees","Red Sox","Marlins", "Mets");
+function changeorder() {
+holder = teams[0];
+for (i=1;i<teams.length;i++) {
+teams[i-1]=teams[i];
+}
+teams[teams.length-1]=holder;
+for(i=0;i<teams.length;i++) {
+document.teamlist.elements[i].value=teams[i];
+}
+
+}
+</script>
+</head>
+<body>
+<h1>League</h1><p>
+<form name="teamlist">
+<input type="text" value="Yankees"><br>
+<input type="text" value="Red Sox"><br>
+<input type="text" value="Marlins"><br>
+<input type="text" value="Mets"><br>
+</form> <br>
+<a href="javascript:changeorder()">Advance </a>
+</body>
+</html>

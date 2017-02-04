@@ -1,0 +1,43 @@
+<html> <head><title> Calculation</title>
+<script language="JavaScript">
+function addup(f) {
+var total; var taxrate = .08 ; var drinkbase;
+opts=f.drink;
+drinkbase = f.drink[opts.selectedIndex].value;
+var sizefactor; var i; var totals; var dp;
+for (i=0;i<f.sizef.length;i++) {
+if (f.sizef[i].checked) {
+  sizefactor = f.sizef[i].value;
+ } }
+total = sizefactor * drinkbase;
+total = total*(1 + taxrate);
+f.label.value="Total with tax";
+f.totalf.value=total;
+totals = f.totalf.value + "00";
+dp = totals.indexOf(".");
+if (dp<0) {
+f.totalf.value = "$" + f.totalf.value+".00"; 
+return false;
+}
+else {
+ totals = "$" + totals.substr(0,dp+3);
+ f.totalf.value = totals;
+ return false;
+ }
+}
+</script> </head>
+<body> <h2> Coffee shop </h2> <p>
+<form name="orderf" onsubmit="return addup(this);">
+<select name="drink">
+<option value="2.50">Coffee 
+<option value="2.25">Hot Cocoa
+<option value="1.00">Chai 
+</select> <br>
+<input type="radio" name="sizef" value="1">Tall
+<input type="radio" name="sizef" value="1.5">Grand
+<input type="radio" name="sizef" value="2"> Super
+<input type=submit value="Order"> <br>
+<br><input type="text" name="label" value="">
+<input type=text name="totalf" value="">
+</form> </body>
+</html>

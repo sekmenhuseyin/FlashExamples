@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<mylist>
+  <contact>
+	<name>Peter Ohring</name>
+        <email>peter.ohring@purchase.edu</email>
+        <discipline>mathematics</discipline>
+  </contact>
+  <contact>
+	<name>Joel Tenenbaum</name>
+        <email>joel@zephyr.ns.purchase.edu</email>
+	<discipline>physics</discipline>
+  </contact>
+  <contact>
+	<name>Marty Lewinter</name>
+        <email>mathman@purchase.edu</email>
+	<discipline>mathematics</discipline>
+  </contact>
+  <contact>
+	<name>Jeanine Meyer</name>
+        <email>jeanine.meyer@purchase.edu</email>
+	<discipline>computer science</discipline>
+  </contact>
+<contact>
+	<name>Irina Shablinsky</name>
+        <email>irina.shablinsky@purchase.edu</email>
+	<discipline>computer science</discipline>
+  </contact>
+<contact>
+	<name>Mekhala Reddi</name>
+        <email>mreddi@zephyr.ns.purchase.edu</email>
+	<discipline>physics</discipline>
+  </contact>
+<contact>
+	<name>Tim Bocchi</name>
+        <email>timbocchi@hotmail.com</email>
+	<discipline>mathematics</discipline>
+  </contact>
+</mylist>

@@ -1,0 +1,72 @@
+<html> <head> <script type="text/javascript">
+
+
+function outputgroup(category){
+  // load the xslt file
+
+try {
+var xslt = new ActiveXObject("Msxml2.XSLTemplate");
+var xslDoc = new ActiveXObject("Msxml2.FreeThreadedDOMDocument");
+var xslProc;
+xslDoc.async = false;
+xslDoc.resolveExternals = false;
+xslDoc.load("preparelistsfix4.xsl"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/books/preparelistsfix4.xsl*/);
+xslt.stylesheet = xslDoc;
+var xmlDoc = new ActiveXObject("Msxml2.DOMDocument");
+xmlDoc.async = false;
+xmlDoc.resolveExternals = false;
+xmlDoc.load("books.xml"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/books/books.xml*/);
+xslProc = xslt.createProcessor();
+xslProc.input = xmlDoc;
+xslProc.addParameter("whichcat", category);
+xslProc.transform();
+document.write(xslProc.output);
+}
+catch(e) {
+try{
+var xslStylesheet;
+var xsltProcessor = new XSLTProcessor();
+var myDOM;
+var xmlDoc;
+  var myXMLHTTPRequest = new XMLHttpRequest();
+  myXMLHTTPRequest.open("GET", "preparelistsfix4.xsl"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/books/preparelistsfix4.xsl*/, false);
+  myXMLHTTPRequest.send(null);
+
+  xslStylesheet = myXMLHTTPRequest.responseXML;
+  xsltProcessor.importStylesheet(xslStylesheet);
+
+  // load the xml file
+  myXMLHTTPRequest = new XMLHttpRequest();
+  myXMLHTTPRequest.open("GET", "books.xml"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/books/books.xml*/, false);
+  myXMLHTTPRequest.send(null);
+  xmlDoc = myXMLHTTPRequest.responseXML;
+
+  // set the parameter using the parameter passed to the outputgroup function
+  xsltProcessor.setParameter(null,"whichcat",category);
+  var fragment = xsltProcessor.transformToFragment(xmlDoc,document);
+  document.getElementById("answer").innerHTML = "";
+   myDOM = fragment;
+  document.getElementById("answer").appendChild(fragment);
+}
+catch(e) {
+  alert("Unable to do xml/xsl processing");
+}
+}
+
+}
+
+</script>  </head>
+<body>
+<a href="javascript:outputgroup('author');">Authors </a><br/>
+<a href="javascript:outputgroup('title');">Titles</a><br/>
+<a href="javascript:outputgroup('publisher');">Publishers </a><br/>
+<a href="javascript:outputgroup('year');">Years </a><br/>
+<div id="answer">
+</div>
+<br/> <br/>
+<a href="chooselist.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/books/chooselist.html">Repeat</a>
+</body>
+</html>
+
+</body>
+</html>

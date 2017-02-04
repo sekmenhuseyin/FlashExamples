@@ -1,0 +1,49 @@
+<html><head><title>Form element test </title>
+<script>
+var teams = new Array("Yankees","Red Sox","Marlins", "Mets");
+var records = [
+[0,0],[0,0],[0,0],[0,0]];
+var nextgame=0;
+var games = [[0,1],[2,3],[0,2],[1,3],[0,3],[1,2]];
+var odds = [    .7,   .5,   .6,   .4,   .6,   .3];
+function playnextgame() {
+game =games[nextgame]; 
+oddsnow = odds[nextgame];
+nextgame++;
+if (nextgame==games.length) { nextgame=0;}
+gameteams = teams[game[0]]+" vs "+teams[game[1]];
+document.gameplayed.gamep.value=gameteams; 
+document.gameplayed.oddsgame.value = String(oddsnow);
+roll = Math.random();
+if (roll<oddsnow) {
+  winner = game[0];  loser = game[1]; }
+else {
+ winner  = game[1];  loser = game[0]; }
+document.gameplayed.winner.value = teams[winner];
+records[winner][0]++;
+records[loser][1]++;
+displayrecord(winner);
+displayrecord(loser);
+}
+function displayrecord(t) {
+document.teamlist.elements[t].value = String(records[t][0])+" - "+String(records[t][1]);
+}
+</script>
+</head>
+<body>
+<h1>League</h1><p>
+<form name="teamlist">
+Yankees<input type="text" value="0-0"><br>
+Red Sox<input type="text" value="0-0"><br>
+Marlins<input type="text" value="0-0"><br>
+Mets<input type="text" value="0-0"><br>
+</form> <br>
+<form name="gameplayed">
+Game just played <input type="text" name="gamep">
+Odds were <input type="text"name="oddsgame">
+Winner: <input type="text" name="winner">
+</form> 
+
+<a href="javascript:playnextgame()">Play game </a>
+</body>
+</html>

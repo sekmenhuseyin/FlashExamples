@@ -1,0 +1,40 @@
+<html>
+<head><title>Slide show </title> 
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+slides = new Array(
+ 'bird.gif'/*tpa=http://newmedia.purchase.edu/~Jeanine/bird.gif*/,
+ 'frog.gif'/*tpa=http://newmedia.purchase.edu/~Jeanine/frog.gif*/,
+ 'heart.gif'/*tpa=http://newmedia.purchase.edu/~Jeanine/heart.gif*/
+ );
+var sn = 0;
+var ns = slides.length;
+
+var tid;
+function change() {
+ document.pic1.src = slides[sn];
+
+ if (ns<= ++sn) {
+ sn = 0;
+ }
+}
+function startss() {
+  tid=setInterval('change()',800);
+}
+function stopss() {
+window.clearInterval(tid);
+}
+//--></script>
+</head>
+<body>
+
+<br>
+<a href="javascript:startss()">Start show </a>
+&nbsp; &nbsp;
+<a href="javascript:stopss()">Stop Show </a><br>
+<img src="bird.gif" tppabs="http://newmedia.purchase.edu/~Jeanine/bird.gif" name='pic1' id='pic1'>
+<p>
+<p>
+<p>
+</body>
+</html>

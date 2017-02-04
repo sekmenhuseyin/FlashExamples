@@ -1,0 +1,32 @@
+<html> <head><title>Computation test </title>
+<script language="JavaScript">
+function total(f) {
+var chocolateprice = 2.55;
+var cocoaprice = 3.15;
+var chocolatecost = chocolateprice * f.choc.value;
+var cocoacost = cocoaprice*f.cocoa.value;
+var taxrate = .06;
+var totalcost = chocolatecost + cocoacost;
+var totalpay = totalcost + taxrate*totalcost;
+var totals = "Total is " + totalcost + " with tax is " + totalpay;
+f.cost.value=totalcost;
+f.wtax.value=totalpay;
+return false;
+} </script> </head>
+
+
+
+<body>
+<h1>Application Form for Chocolate</h1>
+<hr>
+<form name="fx" onsubmit= "return total(this);">
+Enter number of goods in each category.
+Boxes of Chocolate: <input type="text" name="choc"> <br>
+Boxes of Cocoa: <input type="text" name="cocoa"> <br>
+Total:
+
+<input type="text" name="cost">
+<input type="text" name="wtax">
+<input type="submit" value="Compute totals">
+</form> </body> </html>
+

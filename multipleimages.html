@@ -1,0 +1,17 @@
+﻿<html><head><title>Rollover test</title>
+<script language=JavaScript>
+function moveins(image,idn) { 
+
+window.document.images[idn].src=image; }
+</script>   </head>
+<body>Pictures <br/>
+<a onmouseover="moveins('frog.gif'/*tpa=http://newmedia.purchase.edu/~Jeanine/frog.gif*/,0);" 
+onclick="return false;" onmouseout="moveins('bird.gif'/*tpa=http://newmedia.purchase.edu/~Jeanine/bird.gif*/,0);" 
+href="">
+<img src="bird.gif" tppabs="http://newmedia.purchase.edu/~Jeanine/bird.gif" width="200"> </a>
+<br/> <br/>
+<a  onmouseover="moveins('soccer2.jpg'/*tpa=http://newmedia.purchase.edu/~Jeanine/soccer2.jpg*/,1);" onclick="return false;" 
+onmouseout="moveins('soccer1.jpg'/*tpa=http://newmedia.purchase.edu/~Jeanine/soccer1.jpg*/,1);" 
+href="">
+<img src="soccer1.jpg" tppabs="http://newmedia.purchase.edu/~Jeanine/soccer1.jpg" width="200"> </a>
+</body></html>

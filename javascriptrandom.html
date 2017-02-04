@@ -1,0 +1,26 @@
+<html>
+<head><title>Random test </title>
+<script language=Javascript>
+var faces = new Array(
+ "dice1.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dice1.gif*/,
+ "dice2.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dice2.gif*/,
+ "dice3.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dice3.gif*/,
+ "dice4.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dice4.gif*/,
+ "dice5.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dice5.gif*/,
+ "dice6.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dice6.gif*/
+);
+
+function dthrow() {
+var choice;
+choice=Math.floor(Math.random()*6);
+document.dieimage.src=faces[choice];
+}
+</script>
+</head>
+
+<body>
+<img src="dice1.gif" tppabs="http://newmedia.purchase.edu/~Jeanine/dice1.gif" name="dieimage">
+<br>
+<a href="" onClick="dthrow(); return false;">Click to throw single die.</a>
+</body>
+</html>

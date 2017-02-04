@@ -1,0 +1,18 @@
+/* defines look of plain and booked days */
+span.plain {
+	color: #990000;
+	font-weight: normal;
+	
+	}
+	
+span.booked {
+	color: #FF0000;
+	font-weight: bold;
+	
+	}
+	
+div#feature {
+  color: #FF0000;
+  font-weight: bold;
+  font-size: 1.5em;
+}

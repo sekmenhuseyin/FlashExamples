@@ -1,0 +1,45 @@
+<html> <head> <script type="text/javascript">
+var xslStylesheet;
+var xsltProcessor = new XSLTProcessor();
+var myDOM;
+var xmlDoc;
+
+function outputgroup(subject){
+  // load the xslt file
+  var myXMLHTTPRequest = new XMLHttpRequest();
+  myXMLHTTPRequest.open("GET", "contactsuseparm.xsl"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/contactsuseparm.xsl*/, false);
+  myXMLHTTPRequest.send(null);
+
+  xslStylesheet = myXMLHTTPRequest.responseXML;
+  xsltProcessor.importStylesheet(xslStylesheet);
+
+  // load the xml file
+  myXMLHTTPRequest = new XMLHttpRequest();
+  myXMLHTTPRequest.open("GET", "contactsextra.xml"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/contactsextra.xml*/, false);
+  myXMLHTTPRequest.send(null);
+  xmlDoc = myXMLHTTPRequest.responseXML;
+
+  // set the parameter using the parameter passed to the outputgroup function
+  xsltProcessor.setParameter(null,"subj",subject);
+  var fragment = xsltProcessor.transformToFragment(xmlDoc,document);
+  document.getElementById("answer").innerHTML = "";
+   myDOM = fragment; 
+  document.getElementById("answer").appendChild(fragment);
+} 
+
+</script>  </head>  
+<body>
+<body>
+<a href="javascript:outputgroup('computer science');">Computer Science </a><br/>
+<a href="javascript:outputgroup('physics');">Physics </a><br/>
+<a href="javascript:outputgroup('mathematics');">Mathematics </a><br/>
+
+<div id="answer">
+</div>
+<br/> <br/>
+<a href="xmlparmsmozilla.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/xmlparmsmozilla.html">Repeat</a>
+</body>
+</html>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="greeting.xsl" type="text/xsl"?>
+
+<message>
+  <greeting>Hi</greeting>
+  <target>you all</target>
+</message>

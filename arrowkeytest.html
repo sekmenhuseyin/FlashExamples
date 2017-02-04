@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+<SCRIPT>
+function checkArrows (evt) {
+// the following statement is a conditional statement
+// target = a ? b : c;
+// the a is the condition (the test), if this is true
+// the value is b, otherwise it is c.
+//in the statement below, there is nesting.
+//what is going on is checking for different browsers
+//the different browsers put the keycode different places
+
+  var keyCode =
+    document.layers ? evt.which :
+    document.all ? evt.keyCode :
+    document.getElementById ? evt.keyCode : 0;
+  var r = '';
+// the nested if test is used to put different strings
+// into r. In a 'real' application, the code would do different things.
+
+  if (keyCode == 39)
+    r += 'arrow right';
+  else if (keyCode == 40)
+    r += 'arrow down';
+  else if (keyCode == 38)
+    r += 'arrow up';
+  else if (keyCode == 37)
+    r += 'arrow left';
+  r += ' ' + keyCode;
+  alert("r is "+r);
+  return true;
+}
+</SCRIPT>
+</HEAD>
+<BODY onKeyDown="return checkArrows(event);">
+Press an arrow key
+</BODY>
+</HTML>

@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+
+<books>
+<book>
+<author>Agnew</author>
+<author>Kellerman</author>
+<author>Meyer</author>
+<title>Multimedia in the Classroom </title>
+<publisher>Allyn and Bacon</publisher>
+<year>1996</year>
+</book>
+<book>
+<author>Dwyer</author>
+<author>Meyer</author>
+<title>Programming games with Microsoft Visual Basic</title>
+<publisher>Course Technology </publisher>
+<year>2001</year>
+</book>
+<book>
+<author>Agnew</author>
+<author>Kellerman</author>
+<title>Distributed Multimedia</title>
+<publisher>ACM Press</publisher>
+<year>1998</year>
+</book>
+<book>
+<author>Agnew</author>
+<author>Kellerman</author>
+<title>Distributed Multimedia</title>
+<publisher>Atomic Dog</publisher>
+<year>2003</year>
+</book>
+<book>
+<author>Meyer</author>
+<title>Creating Database Web Applications with PHP and ASP</title>
+<publisher>Charles River Media</publisher>
+<year>2003</year>
+</book>
+<book>
+<author>Agnew</author>
+<title>Calculus</title>
+<publisher>Allyn and Bacon</publisher>
+<year>1996</year>
+
+</book>
+</books>

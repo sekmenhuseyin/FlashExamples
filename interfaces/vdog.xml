@@ -1,0 +1,85 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="virtual.xsl" type="text/xsl"?>
+<animal>
+  <animalname>Dog</animalname>
+  <statevar name="interval">1000</statevar>
+  <statevar name="elapsed">0</statevar>
+  <statevar name="wagtime">0</statevar>
+  <statevar name="weight" show="yes">100</statevar>
+  <state name="normal" start="yes">
+     <picture>dog.gif</picture>
+     <label>Dog is normal.</label>
+     <switchcondition>
+       <condition>weight>120</condition>
+       <truestate>fat</truestate>
+     </switchcondition>
+     <switchcondition>
+       <condition>80>weight</condition>
+       <truestate>thin</truestate>
+     </switchcondition>
+  </state>
+  <state name="fat">
+     <picture>fatdog.gif</picture>
+     <label>Dog is fat.</label>
+     <switchcondition>
+        <condition>120>weight</condition>
+        <truestate>normal</truestate>
+     </switchcondition>
+     <switchcondition>
+        <condition>weight>150</condition>
+        <truestate>fatdead</truestate>
+     </switchcondition>
+   </state>
+   <state name="fatdead" stopstate="yes">
+      <picture>fatdeaddog.gif</picture>
+      <label>Dog is dead.</label>
+   </state>
+   <state name="thin">
+       <picture>thindog.gif </picture>
+       <label>Dog is thin.</label>
+       <switchcondition>
+         <condition>weight>80</condition>
+         <truestate>normal</truestate>
+       </switchcondition>
+       <switchcondition>
+          <condition>60>weight</condition>
+          <truestate>thindead</truestate>
+       </switchcondition>
+   </state>  
+   <state name="thindead" stopstate="yes">
+     <picture>thindeaddog.gif</picture>
+     <label>Dog is dead.</label>
+   </state>
+   <state name="wagging">
+      <picture>wag.gif</picture>
+      <label>Dog is wagging its tail.</label>
+      <switchcondition>
+        <condition>(wagtime++)>5</condition>
+        <truestate>normal</truestate>
+      </switchcondition>
+   </state>
+   <state name="mean">
+     <picture>mean.gif</picture>
+     <label>Dog is angry. </label>
+    <switchcondition>
+        <condition>(wagtime++)>5</condition>
+        <truestate>normal</truestate>
+      </switchcondition>
+   </state>
+   <action label="Feed dog">
+    <procedurename>feeddog</procedurename>
+    <procedure>weight=weight+10;elapsed=0;
+    </procedure>
+   </action>
+   <action label="Pet dog">
+     <procedurename>petdog</procedurename>
+     <procedure> wagtime=0; prewagcurrent=curstate;
+       if (Math.random()>Math.min(elapsed/interval,19)/20) 
+         {curstate="wagging";}
+       else {curstate="mean";}</procedure>
+   </action>
+   <intervalaction>
+      elapsed=elapsed+interval;
+      weight=weight-1;
+   </intervalaction>
+</animal>

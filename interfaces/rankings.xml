@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="rankings.xsl" type="text/xsl"?>
+<results group="A">
+<match feature="no">
+  <date>07-Jun-2002 </date>
+  <team score="3">Spain </team>
+  <team score="1">Paraguay </team>
+</match>
+<match feature="no">
+  <date>07-Jun-2002 </date>
+  <team score="2">Sweden </team>
+  <team score="2">Nigeria </team>
+</match>
+<match feature="no">
+  <date>07-Jun-2002 </date>
+  <team score="2">Spain </team>
+  <team score="2">Sweden </team>
+</match>
+<match feature="no">
+  <date>07-Jun-2002 </date>
+  <team score="1">England </team>
+  <team score="0">Argentina </team>
+  <picture>soccer1.jpg </picture>
+</match>
+<match feature="no">
+  <date>31-May-2002 </date>
+  <team score="1">Senegal </team>
+  <team score="0">France </team>
+</match>
+<match feature="yes">
+  <date>05-Jun-2002</date>
+  <headline>USA Wins</headline>
+  <story>The USA team upsets Portugal in its first game in Round 1 of the World Cup.  The score was 3 to 2.  Portugal was considered a superior team. This means that the USA will not finish last as it did in the previous outing.</story>
+  <team score="3">USA </team>
+  <team score="2">Portugal </team>
+  <picture>soccer2.jpg</picture>
+</match>
+<match feature="no">
+  <date>04-Jun-2002 </date>
+  <team score="2">Korea </team>
+  <team score="0">Poland </team>
+</match>
+</results>

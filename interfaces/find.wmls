@@ -1,0 +1,78 @@
+extern function lookup(key) { 
+  var place;
+  var found;
+  var dups;
+  var fn;
+  fn = "";
+  dups = false;
+  place="";
+  found=false;
+if (String.find("Jeanine Meyer",key)>=0) {
+  fn="Jeanine Meyer";
+  found = true;
+  place = "NS";
+ }
+
+if (String.find("Jon Rubin",key)>=0) {
+ if (found) {
+  fn = fn+"|Jon Rubin";
+  place = place + "|Music";
+  dups = true;
+  }
+else {
+  fn="Jon Rubin";
+   found = true;
+  place = "Music";
+ }
+}
+if (String.find("Peter Ohring",key)>=0) {
+ if (found) {
+  fn = fn+"|Peter Ohring";
+  place = place + "|NS";
+  dups= true;
+  }
+else {
+  fn="Peter Ohring";
+  found=true;
+ place="NS";
+ }
+}
+
+if (String.find("Jon Esser",key)>=0) {
+ if (found) {
+  fn = fn+"|Jon Esser";
+  place = place +"|VA";
+  dups = true;
+ }
+else {
+  fn="Jon Esser";
+  found = true;
+ place = "VA";
+ }
+}
+
+if (String.find("Jim McElvaine",key)>=0) {
+ if (found) {
+  fn = fn+"|Jim McElvaine";
+  place = place + "|Music";
+  dups = true;
+ }
+else {
+  fn="Jim McElvaine";
+  found = true;
+  place = "Music";
+ }
+}
+if (dups) {
+ WMLBrowser.setVar("fullnames",fn);
+ WMLBrowser.setVar("location",place);
+ WMLBrowser.go("lookup.wml#dup");
+}
+else if (found) {
+ WMLBrowser.setVar("location",place);
+ WMLBrowser.go("lookup.wml#result");
+}
+else {
+ WMLBrowser.go("lookup.wml#nf");
+}
+}

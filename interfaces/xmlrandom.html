@@ -1,0 +1,19 @@
+<html> <body> <script type="text/javascript">
+// Load XML 
+var xml = new ActiveXObject("Microsoft.XMLDOM")
+xml.async = false
+xml.load("http://newmedia.purchase.edu/~Jeanine/interfaces/contactsnoref.xml")
+// Load the XSL
+var xsl = new ActiveXObject("Microsoft.XMLDOM")
+xsl.async = false
+// choose specific xsl file
+var choice = Math.random
+if (Math.random()>.5) {
+ xsl.load("contacts1.xsl"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/contacts1.xsl*/)  
+  }
+else {
+ xsl.load("contacts2.xsl"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/contacts2.xsl*/)
+}
+// Transform
+document.write(xml.transformNode(xsl))
+</script>  </body>  </html>

@@ -1,0 +1,56 @@
+<html>
+<head>
+<script>
+function run_trials(f) {
+var attempts = 0;
+limit = 1*f.trials.value;
+f.red_count.value = 0;
+f.black_count.value = 0;
+f.proportion.value = "";
+alert("limit is "+limit);
+var box = Array();
+var i;
+var notdone = true;
+while (notdone) {
+// put black or red ball in the box
+if (Math.random()>=.5) {
+      box[0] = "red"; }
+else {
+      box[0] = "black";}
+// add a black ball to the box
+   box[1] = "black";
+//pick out a random ball from the box
+if (Math.random()>=.5) {
+     i = 0; }
+else {
+     i = 1;}
+choice = box.splice(i,1);  //this removes the choice
+
+// keep going only if chosen ball is/was black
+if (choice == "black") {  //check for remaining ball
+    if (box[0]=="red") {
+       f.red_count.value = 1+1*f.red_count.value;
+    }
+    else {
+      f.black_count.value = 1+1*f.black_count.value;
+    }
+    notdone = (limit > ++attempts);
+
+}  //end if first ball selected was black
+} // end while (notdone)
+f.proportion.value = (f.black_count.value )/(f.trials.value);
+return false;
+}
+</script>
+</head>
+<body>
+<form name="f" onSubmit="return run_trials(this)";>
+Trials: <input type="text" name="trials" value="10"/>
+Count of black: <input type="text" name="black_count" value="0"/>
+Count of red: <input type="text" name="red_count" value="0"/>
+Proportion: <input type="text" name="proportion" value=""/>
+<br/>
+<input type="submit" value="Run trials"/>
+</form>
+</body>
+</html>

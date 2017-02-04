@@ -1,0 +1,502 @@
+<html>
+<head>
+<title>Simple Tetris </title>
+<script language="JavaScript">
+/*Copyright 2004
+Inspiration from original Tetris and also Hiro Nakamura, who did a JavaScript version and from which I got ideas.
+*/
+
+/*
+Use setInterval to fall automatically.  Set up grace period after touchdown to move current piece.
+Change how completefalling is called.
+*/
+
+var hwidth = 9; //number of columns
+var vheight = 15;  //number of rows
+var tid;   //timer id
+var timeperiod = 800;  // interval between drops
+var grace = 0;
+var startnewone = false;
+var graceperiod = 3;
+
+function createboard() {
+var i;
+var j;
+for (i=0; i<vheight; i++) {
+	for (j=0; j<hwidth; j++) {
+		document.write("<img src='bblock.gif'/*tpa=http://newmedia.purchase.edu/~Jeanine/tetris/bblock.gif*//>");
+		}
+	document.write("<br/>");
+  }
+}
+
+//blockformulas for initial orientation
+var blockformulas = [
+   [[0,0],[1,0],[2,0],[1,1]],
+   [[0,0],[1,0],[2,0],[3,0]],
+   [[0,1],[1,1],[1,0],[2,0]],
+   [[0,0],[1,0],[0,1],[1,1]],
+   [[0,0],[1,0],[1,1],[2,1]],
+   [[0,0],[1,0],[2,0],[2,1]],
+   [[0,1],[1,1],[2,1],[2,0]]
+   ];
+//block formulas for 4 orientations
+//orientations[orient][type][block 0 to 3][x and y]
+var orientations = [
+   [
+   [[0,0],[1,0],[2,0],[1,1]], //
+   [[0,0],[1,0],[2,0],[3,0]], //
+   [[0,1],[1,1],[1,0],[2,0]], //
+   [[0,0],[1,0],[0,1],[1,1]], //
+   [[0,0],[1,0],[1,1],[2,1]], //
+   [[0,0],[1,0],[2,0],[2,1]], //
+   [[0,1],[1,1],[2,1],[2,0]]	//
+   ],
+   [
+   [[1,0],[1,1],[1,2],[2,1]], //
+   [[1,0],[1,1],[1,2],[1,3]], //
+   [[1,2],[1,1],[0,1],[0,0]], //
+   [[0,0],[1,0],[0,1],[1,1]], //
+   [[1,0],[1,1],[0,1],[0,2]], //
+   [[1,2],[1,1],[1,0],[2,0]],  //
+   [[2,2],[2,1],[2,0],[1,0]]	//
+   ],
+   [
+   [[0,1],[1,1],[2,1],[1,0]],  //
+   [[0,0],[1,0],[2,0],[3,0]], //
+   [[2,0],[1,0],[1,1],[0,1]], //
+   [[0,0],[1,0],[0,1],[1,1]], //
+   [[0,0],[1,0],[1,1],[2,1]], //
+   [[2,1],[1,1],[0,1],[0,0]], //
+   [[2,0],[1,0],[0,0],[0,1]]  //
+   ],
+   [
+   [[1,0],[1,1],[1,2],[0,1]], //
+   [[1,0],[1,1],[1,2],[1,3]], //
+   [[1,2],[1,1],[0,1],[0,0]], //
+   [[0,0],[1,0],[0,1],[1,1]], //
+   [[1,0],[1,1],[0,1],[0,2]], //
+   [[1,0],[1,1],[1,2],[0,2]], //
+   [[1,0],[1,1],[1,2],[2,2]]  //
+   ]
+   ];
+var scoring= [
+   1, 4, 8, 16]; // 1 for 1 line, 4 for 2 at a time, etc.
+var blockimages = [
+   "darkblue.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/tetris/darkblue.gif*/,
+   "lightblue.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/tetris/lightblue.gif*/,
+   "green.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/tetris/green.gif*/,
+   "yellow.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/tetris/yellow.gif*/,
+   "red.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/tetris/red.gif*/,
+   "purple.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/tetris/purple.gif*/,
+   "gray.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/tetris/gray.gif*/
+  ];
+var current = [ //image number, column, row of 4 blocks
+  [0,0,0],
+  [0,0,0],
+  [0,0,0],
+  [0,0,0]
+  ];
+var currenttype;  //holds image file name
+var currenttypenum;  //0 to 6
+var currentorientation;  //0 to 3
+var currentorigin; //nominal origin [x,y]
+
+// generates the image tag number from col and row
+function imagenumber(atcol, atrow) {
+   var imagenum = atrow*hwidth + atcol;
+   return imagenum;
+  }
+//make a block of type type at column atcol and at row atrow
+//used to start off blocks
+function makeblock(type, atcol, atrow) {
+   var tests;
+   var found;
+   currentorigin = [atcol, atrow];
+   currenttypenum = type;
+   currenttype = blockimages[type];
+   currentorientation = 0;
+   var i;
+   var block = blockimages[type];
+   var formula = blockformulas[type];
+   var imagenum;
+   var atc;
+   var atr;
+   for (i=0;i<=3;i++) {
+	 atc = atcol + formula[i][0];
+	 atr = atrow + formula[i][1];
+	 imagenum=imagenumber(atc, atr);
+   //check for room to add block. If none, end game.
+         tests = String(document.images[imagenum].src);
+         found = tests.search("bblock.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/tetris/bblock.gif*/);
+         if (found>=0) {
+           document.images[imagenum].src = block;
+	   current[i][0]=imagenum;
+	   current[i][1] = atc;
+	   current[i][2] = atr;
+         }
+         else {
+		alert("No room for new block. Game over.");
+                clearInterval(tid);
+                break;
+         }
+    }
+
+  }
+// move left (-1) or right (1)
+function moveover(dir) {
+
+   var i;
+   var tests;
+   var curimage;
+   var oksofar = true;
+   var imgno;
+    var newcurrent = new Array();
+    var saved = new Array();
+  for (i=0; i<=3; i++) {
+    imgno = current[i][0];
+
+    if (dir==-1) {         // moving left
+       if (0 == imgno % hwidth)   // at left edge
+          { oksofar = false;
+
+          break; } }
+    if (dir == 1) {          // moving right
+      if ((hwidth-1)== imgno % hwidth) {  //at right edge
+          oksofar = false;
+
+          break; }
+        }
+
+    newcurrent[i] = imgno+dir;
+    }
+  // if oksofar (no blocks at critical edge, newcurrent is set
+
+  if (oksofar) {
+               for (i=0; i<=3; i++) {
+                 saved[i] = current[i][0];
+                 document.images[current[i][0]].src = "bblock.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/tetris/bblock.gif*/;
+               }
+
+               for (i=0; i<=3; i++) {
+
+                  tests = String(document.images[newcurrent[i]].src);
+                  found = tests.search("bblock.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/tetris/bblock.gif*/);
+                  if (found == -1) {  // meaning it was not found
+                    oksofar = false;
+                    break;
+                    }
+               }
+
+               if (oksofar) {
+                  for (i=0;i<=3;i++) {
+                    document.images[newcurrent[i]].src= currenttype;
+                    current[i][0] = newcurrent[i];
+                    current[i][1] = current[i][1]+dir;
+                  }
+
+                  currentorigin[0]=currentorigin[0]+dir;
+                  checkifhitdown();
+                 }
+               else {
+                   for (i=0;i<=3;i++) {
+                       document.images[saved[i]].src = currenttype; //restore
+                   }
+               }
+       }
+    }
+
+// rotate current blocks
+function rotate() {
+   var block = currenttype;
+   var savedorientation = currentorientation;
+   currentorientation = (currentorientation+1) % 4;  //rotates to next orientation
+   var i;
+   var formula = orientations[currentorientation][currenttypenum];
+   var atcol = currentorigin[0];
+   var atrow = currentorigin[1];
+   var atc;
+   var atr;
+   var tests;
+   var newcurrent = Array();
+   var saved = Array();
+   var oksofar = true;
+ // calculate new imagenumbers & chk if over right side
+// also need to check if over left side
+   for (i=0;i<=3;i++) {
+         atc = atcol + formula[i][0];
+     if (atc>=(hwidth-1)) {
+          oksofar = false;
+          break;       }
+     if (atc<0) {
+          oksofar = false;
+          break;       }
+	 atr = atrow + formula[i][1];
+     if (atr>=(vheight-1)) {
+          oksofar = false;
+          break;       }
+	 newcurrent[i]=imagenumber(atc, atr);
+    }
+  if (oksofar) {
+   for (i=0;i<=3;i++) {  //save then clear slots
+       saved[i] = current[i][0];
+       document.images[current[i][0]].src = "bblock.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/tetris/bblock.gif*/ }
+  // now go through and check each target slot for block
+   for (i=0;i<=3;i++) {
+         tests = String(document.images[newcurrent[i]].src);
+         found = tests.search("bblock.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/tetris/bblock.gif*/);
+         if (found == -1) {  // meaning it was not found
+            oksofar = false;
+            break;          }
+    }
+   if (oksofar) {
+     for (i=0;i<=3;i++) {
+	 imagenum=newcurrent[i];
+         document.images[imagenum].src = block;
+	 current[i][0]=imagenum;
+	 current[i][1] = atcol+formula[i][0];
+	 current[i][2] = atrow+formula[i][1];
+      }
+     checkifhitdown();  //may have hit bottom as result of rotate
+    }
+   else {  //need to restore from saved
+      for (i=0;i<=3;i++) {
+      document.images[saved[i]].src = block;
+       }
+      currentorientation = savedorientation;
+     }
+   }  //close first if oksofar
+  else {
+      currentorientation = savedorientation;
+    }
+
+}  // close function
+function checkifhitdown()  {  // but don't move it
+    var i;
+   var tests;
+   var curimage;
+   var oksofar = true;
+   var imgno;
+   var atc;
+   var atr;
+    var newcurrent = new Array();
+    var saved = new Array();
+   var found;
+   var hitdown = false;
+  for (i=0; i<=3; i++) {
+    imgno = current[i][0];
+    atc = current[i][1];
+    atr = current[i][2];
+    if (atr>=(vheight-1)) { //at very bottom already
+      //need to signal start of new block
+      hitdown = true;
+      oksofar = false;
+      break;
+      }
+    newcurrent[i] = imagenumber(atc,atr+1); //virtual move down
+    }
+  if (oksofar) {
+  for (i=0;i<=3; i++) {  //save image nums & blank out current piece
+    saved[i] = current[i][0];
+    document.images[current[i][0]].src = "bblock.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/tetris/bblock.gif*/;
+       } // ends for loop
+  for (i=0; i<=3; i++) { //check if any blocking
+                  tests = String(document.images[newcurrent[i]].src);
+                  found = tests.search("bblock.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/tetris/bblock.gif*/);
+                  if (found == -1) {  // meaning it was not found
+                    oksofar = false;
+                  atc = currentorigin[1];
+                    hitdown = true;
+                    break;
+                    }  //ends if test
+               } //ends for loop
+ //restore blocks in all cases
+  for (i=0;i<=3; i++) {
+      document.images[saved[i]].src = currenttype;
+       }  //ends for loop
+
+  } //ends first if oksofar
+   startnewone = true;
+   grace = graceperiod;
+   return hitdown;
+}
+
+//move down one unit
+function movedown() {
+    var i;
+   var tests;
+   var curimage;
+   var oksofar = true;
+   var imgno;
+   var atc;
+   var atr;
+    var newcurrent = new Array();
+    var saved = new Array();
+   var found;
+   var hitdown = false;
+  for (i=0; i<=3; i++) {
+    imgno = current[i][0];
+    atc = current[i][1];
+    atr = current[i][2];
+
+    if (atr>=(vheight-1)) { //at very bottom already
+      //need to signal start of new block
+      hitdown = true;
+      oksofar = false;
+      break;
+      }
+    newcurrent[i] = imagenumber(atc,atr+1);
+    }
+  if (oksofar) {
+  for (i=0;i<=3; i++) {  //saved image nums & blank out current piece
+    saved[i] = current[i][0];
+    document.images[current[i][0]].src = "bblock.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/tetris/bblock.gif*/;
+       } // ends for loop
+  for (i=0; i<=3; i++) { //check if any blocking
+                  tests = String(document.images[newcurrent[i]].src);
+                  found = tests.search("bblock.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/tetris/bblock.gif*/);
+                  if (found == -1) {  // meaning it was not found
+                    oksofar = false;
+                    break;
+                    }  //ends if test
+               } //ends for loop
+  if (oksofar) {
+     for (i=0;i<=3; i++) {
+       document.images[newcurrent[i]].src = currenttype;
+       current[i][0] = newcurrent[i];
+       current[i][2]++; // y increases; x stays the same
+
+      } //ends for loop
+     currentorigin[1]++;
+   }  //ends true clause for inner oksofar
+  else {
+    for (i=0;i<=3; i++) {
+      document.images[saved[i]].src = currenttype;
+      hitdown = true;
+    }  //ends for loop
+   }  //ends else of second oksofar
+  } //ends first if oksofar
+  if (hitdown) {  //tried to move down beyond
+     startnewone=true;
+     grace = 0;
+   }
+  else {
+     if (checkifhitdown()) {  //tests if can go one more
+      startnewone = true;
+      grace = graceperiod;
+      }
+   }
+}
+function clock () {
+  if (startnewone) {  //start new piece after any grace period
+     if (grace==0) {
+        startnewone = false;
+        completefalling();
+        startnewpiece();
+      }
+     else {
+
+      grace--; }
+  }
+
+  movedown();  //move current piece down
+}
+
+function completefalling() {
+ //check for completed lines.
+    var i;
+    var j;
+    var imgno;
+    var filledcount;
+    var tests;
+    var found;
+    var linesremoved = 0;
+    i = vheight-1;
+
+    while (i>=0) {
+        filledcount = 0;
+ 	for (j=hwidth-1;j>=0;j--) {
+                  imgno = imagenumber(j,i);
+                  tests = String(document.images[imgno].src);
+                  found = tests.search("bblock.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/tetris/bblock.gif*/);
+                  if (found==-1) {  // didn't find blank
+                    filledcount++ ;
+                    }  // end if test
+      }
+
+      if (filledcount == hwidth) {
+          linesremoved++;
+          cascade(i);
+            }
+      else {
+      i--;
+       }
+    }  // end while loop of rows
+   if (linesremoved>0) {
+       document.f.lines.value = linesremoved + parseInt(document.f.lines.value);
+       document.f.score.value = scoring[linesremoved-1]+parseInt(document.f.score.value);
+    }
+  }  //end completefalling function
+
+function cascade(cut) {
+// the line at row cut is to be removed, replaced by lines above
+   var upper;
+  var colindex;
+  var imgno;
+  var imgnox;
+  for (upper=cut;upper>0;upper--) {
+      for (colindex = 0; colindex<hwidth; colindex++) {
+        imgno = imagenumber(colindex,upper);
+        imgnox = imagenumber(colindex,upper-1);
+        document.images[imgno].src = document.images[imgnox].src;
+       }
+    }
+
+}
+
+function startnewpiece() {
+  var type = Math.floor(Math.random()*7);
+  var scol = Math.floor(Math.random()*5); //not all the way right
+  makeblock(type,scol,1);  //leave 0th row to cascade
+}
+function startgame() {
+   document.f.lines.value = "0";
+   document.f.score.value = "0";
+   startnewone=true;
+   grace = 0;
+   tid = setInterval("clock();",timeperiod);
+  }
+</script>
+</head>
+<body>
+<table>
+<td>
+<table border="1">
+<td>
+<script language="JavaScript">
+  createboard();
+</script>
+</td>
+</table>
+</td>
+<td>
+<form name="f">
+<input type="button" onClick="moveover(-1);" value="left">
+<input type="button" onClick="rotate();" value="rotate">
+<input type="button" onClick="moveover(1);" value="right">
+<br/>
+&nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;
+
+<br/>
+Lines: <input type="text" name="lines" value="0"> <br/>
+Score: <input type="text" name="score" value="0"> <br/>
+</form>
+</br>
+
+</td>
+</table>
+<img src="bblock.gif" tppabs="http://newmedia.purchase.edu/~Jeanine/tetris/bblock.gif"/>
+<a href="javascript:startgame();">Start Game </a> <br/>
+
+</body>
+</html>

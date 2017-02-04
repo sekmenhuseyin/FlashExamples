@@ -1,0 +1,80 @@
+<html>
+<head><title>Random test </title>
+<script language=Javascript>
+var faces = new Array;
+ faces[0] = new Image(50,50);
+ faces[0].src = "dice1.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dice1.gif*/;
+ faces[1] = new Image(50,50);
+ faces[1].src = "dice2.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dice2.gif*/;
+ faces[2] = new Image(50,50);
+ faces[2].src = "dice3.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dice3.gif*/;
+ faces[3] = new Image(50,50);
+ faces[3].src = "dice4.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dice4.gif*/;
+ faces[4] = new Image(50,50);
+ faces[4].src = "dice5.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dice5.gif*/;
+ faces[5] = new Image(50,50);
+ faces[5].src = "dice6.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dice6.gif*/;
+var firstturn;
+ firstturn = true;
+var pointvalue;
+
+function dthrow() {
+var choice;
+var die1v;
+var die2v;
+var sum;
+choice=Math.floor(Math.random()*6);
+die1v = choice+1;
+document.dieimagea.src=faces[choice].src;
+choice=Math.floor(Math.random()*6);
+die2v = choice+1;
+document.dieimageb.src=faces[choice].src;
+sum = die1v + die2v;
+if (firstturn) {
+ document.f.point.value = "";
+ switch (sum) {
+  case 7:
+  case 11:
+    document.f.status.value = "You win!";
+    break;
+  case 2:
+  case 3:
+  case 12:
+    document.f.status.value = "You lose.";
+    break;
+  default:
+    firstturn = false;
+    pointvalue = sum;
+    document.f.point.value = pointvalue;
+    document.f.status.value ="Throw again for your point.";
+  }
+}
+else {
+  switch (sum) {
+  case 7:
+    document.f.status.value = "You lose.";
+    firstturn = true;
+    break;
+  case pointvalue:
+    document.f.status.value = "You win.";
+    firstturn = true;
+  }
+ }
+} 
+
+</script>
+</head>
+
+<body>
+<img src="dice1.gif" tppabs="http://newmedia.purchase.edu/~Jeanine/dice1.gif" name="dieimagea"> <img src="dice1.gif" tppabs="http://newmedia.purchase.edu/~Jeanine/dice1.gif" name="dieimageb">
+<br>
+<a href="" onClick="dthrow(); return false;">Click to throw dice.</a>
+<p> <p>
+
+<form name="f">
+Status <input name="status" value="" size=25>
+<br/>
+Point value <input name="point" value="" size=4>
+</form>
+</body>
+</html>

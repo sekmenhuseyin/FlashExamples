@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="lyrics.xsl" type="text/xsl"?>
+<!DOCTYPE lyrics [
+<!ELEMENT lyrics (verse1, verse2, verse3)>
+<!ATTLIST lyrics start CDATA #REQUIRED> 
+<!ELEMENT verse1 (#PCDATA)>
+<!ELEMENT verse2 (#PCDATA)>
+<!ELEMENT verse3 (#PCDATA)>
+]>
+<lyrics start="3">
+  <verse1> bottles of beer on the wall</verse1>
+  <verse2> bottles of beer </verse2>
+  <verse3> take one down and pass it around</verse3>
+</lyrics>

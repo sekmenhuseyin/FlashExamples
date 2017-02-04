@@ -1,0 +1,155 @@
+<html>
+<head>
+<script language="javascript">
+<!--
+
+function on(num)
+{
+ if (!document.images) return;
+ document.images[(num<4 ? "topbtn" : "botbtn")].src = "vor-btn"+num+".gif";
+ document.scn.src = "vor-scn"+num+".gif";
+}
+
+function off(num)
+{
+ if (!document.images) return;
+ document.images[(num<4 ? "topbtn" : "botbtn")].src = "blank.gif";
+ document.scn.src = "blank.gif";
+}
+
+//-->
+</script>
+<title>NavWorks: Vortex Interface</title>
+</head>
+
+<body background="vor-back.jpg" text="#B6F3C9" bgcolor="#506C59" link="white" vlink="white" alink="white">
+<center>
+
+<MAP NAME="TOPBTN">
+<AREA SHAPE=RECT COORDS="0,0,55,23" HREF="javascript:void(0);" onMouseOver="on(1);" onMouseOut="off(1);">
+<AREA SHAPE=RECT COORDS="56,0,109,45" HREF="javascript:void(0);" onMouseOver="on(2);" onMouseOut="off(2);">
+<AREA SHAPE=RECT COORDS="111,19,162,69" HREF="javascript:void(0);" onMouseOver="on(3);" onMouseOut="off(3);">
+</MAP>
+
+<MAP NAME="BOTBTN">
+<AREA SHAPE=RECT COORDS="38,7,89,57" HREF="javascript:void(0);" onMouseOver="on(4);" onMouseOut="off(4);">
+<AREA SHAPE=RECT COORDS="90,34,144,72" HREF="javascript:void(0);" onMouseOver="on(5);" onMouseOut="off(5);">
+<AREA SHAPE=RECT COORDS="145,46,200,75" HREF="javascript:void(0);" onMouseOver="on(6);" onMouseOut="off(6);">
+</MAP></BODY>
+
+<table border=0 cellpadding=0 cellspacing=0>
+<tr><td colspan=2><img src="vor-top.jpg" width=410 height=50></td></tr>
+<tr>
+ <td><img src="vor-topleft.jpg" width=200 height=75></td>
+ <td background="vor-topbtn.jpg"><img src="blank.gif" usemap=#TOPBTN name=topbtn border=0 width=210 height=75></td>
+</tr>
+<tr><td colspan=2>
+ <table border=0 cellpadding=0 cellspacing=0>
+ <tr>
+  <td><img src="vor-left.jpg" width=90 height=50></td>
+  <td background="vor-screen.jpg"><img src="blank.gif" width=220 height=50 name=scn></td>
+  <td><img src="vor-right.jpg" width=100 height=50></td>
+ </tr>
+ </table>
+</td></tr>
+<tr>
+ <td background="vor-botbtn.jpg"><img src="blank.gif" usemap=#BOTBTN name=botbtn border=0 width=200 height=75></td>
+ <td><img src="vor-botright.jpg" width=210 height=75></td>
+</tr>
+<tr><td colspan=2><img src="vor-bot.jpg" width=410 height=60></td></tr>
+<tr><td colspan=2><img src=vor-bar.jpg width=410 height=5></td></tr>
+</table>
+
+<table width=410>
+<tr><td><font face="verdana,arial,helvetica" size=2><b>Welcome to the Vortex Interface, where you can access your one-stop resource for high-tech products for your home, such as the new line of self-driving hovercars, or appliances that run on the newly-standardized cubic foot fusion power plant. The six buttons on the interface allow you to do all this, with nifty animations for each link. 
+</td></tr></table>
+
+<img src=vor-bar.jpg width=410 height=5>
+
+<table width=410>
+<tr><td><font face="verdana,arial,helvetica" size=2><b>If there's anything this interface reminds me of, it's a weapon that a super hero might use to fling across the room, and have it beat up an escaping bad guy before returning to the thrower's hand.
+</td></tr></table>
+
+<br><br><br>
+
+<table width=410>
+<tr><td><font face="verdana,arial,helvetica" size=2><b>
+<center><font size=4 color="white">Tutorial: Creating Animated "Vortex" Text</font><br>
+<img src=vor-bar.jpg width=410 height=5><br></center>
+In this tutorial, you'll learn how to create animations like the ones you see when you rollover a button in this interface.<p>
+
+<font size=5 color="white">1</font>. Using the Text tool, create the text for the section of the site that you want to animate. (If you are using Photoshop 5, convert this text layer to a regular one by choosing Layer&#187;Type&#187;Render Layer.)<p>
+
+<font size=5 color="white">2</font>. Choose the kind of distortion effect you want to apply to your text, and determine the number of necessary frames. In the Vortex interface, I used the ZigZag distortion filter, with amounts of 2, 4, and 6 to produce 3 unique frames of animation. In this example, I'm going to use the Twirl filter to make an animation with 5 unique frames. So, now that I know I need 5 frames, I make 4 copies of the text layer, resulting in a total of 5 identical layers of text. On each text layer, I'll want to distort the text in slightly different ways, so that when the frames are animating, the text will appear to bend and wobble slightly.<p>
+
+<font size=5 color="white">3</font>. For 5 frames of "twirling", I decided to have the twirl setting change by 10 degrees for each frame. So, I edited the layers to make frames for 10, 20, -10, and -20 degree twirls, leaving one of the frames untouched for the 0 degree frame. Below is what each individual layer looks like after running the Twirl filter on each:</td></tr></table>
+
+<table border=0>
+<tr>
+ <td><font face="verdana,arial,helvetica" size=2><b>-20 degrees:</td>
+ <td><img width=304 height=54 src="vor-tut1-neg20.gif"></td>
+</tr>
+<tr>
+ <td><font face="verdana,arial,helvetica" size=2><b>-10 degrees:</td>
+ <td><img width=304 height=54 src="vor-tut1-neg10.gif"></td>
+</tr>
+<tr>
+ <td><font face="verdana,arial,helvetica" size=2><b>0 degrees:</td>
+ <td><img width=304 height=54 src="vor-tut1-zero.gif"></td>
+</tr>
+<tr>
+ <td><font face="verdana,arial,helvetica" size=2><b>10 degrees:</td>
+ <td><img width=304 height=54 src="vor-tut1-pos10.gif"></td>
+</tr>
+<tr>
+ <td><font face="verdana,arial,helvetica" size=2><b>20 degrees:</td>
+ <td><img width=304 height=54 src="vor-tut1-pos20.gif"></td>
+</tr>
+</table><p>
+
+<table width=410>
+<tr><td><font face="verdana,arial,helvetica" size=2><b>
+<font size=5 color="white">4</font>. At this point, I have the basic frames needed for an animation based on the Twirl filter. To make final touches to the animation, I used this page's background image, and inverted each layer, making the text white and more contrasting with the background. After each frame was put on its own layer, I saved the PSD and imported it into <a href="http://www.gamani.com/" target=_new>GIF Movie Gear</a>, which can treat each layer as an individual frame. Because there is no built-in way in a GIF animation to loop by playing forward and then backward, I had to make copies of the middle 3 frames and put them at the end of the animation in reverse order. In other words, I set up the list of frames as follows: -20&#176;, -10&#176; 0&#176;, 10&#176;, 20&#176;, 10&#176;, 0&#176;, -10&#176;. After setting the frame delay to 1/10 of a second, optimizing, and saving, this was the result:<p>
+<center><img width=300 height=50 src="vor-tut1-warp1.gif"></center><p>
+
+That's all there is to it! However, if you want to get a little more complicated with it, you can create the effect of a motion blur. When each frame of the animation is created, instead of hiding the other 4 text layers, the trick is to keep them visible while adjusting their opacities. The first frame I created was when the -20&#176; twirl layer was on, and the others were off. For this variation, I kept them all on, but decreased the opacities for the layers as the twirl degree increased. The -10&#176; frame had 40% opacity, the 0&#176; frame had 30% opacity, 10&#176; had 20%, and 20&#176; had 10%. So, I call it the -20&#176; frame, since the -20&#176; layer has 100% opacity. Then, for the other frames, I make another layer 100% opacity and the others lower, giving the appearance of a wispy "fadeout". Below is the new GIF.<p>
+<center><img width=300 height=50 src="vor-tut1-warp2.gif"></center><p>
+
+Remember that this effect can be used with many of the distortion filters, not just Twirl and ZigZag. Also, to save a little file size, you can make all of the area surrounding the animated text transparent, if the background is designed to align with your text. For example, the center image in the Vortex interface (where text is displayed) is really in the background. The animation only contains information about how the text animation should change with respect to the background.<br>
+<img src=vor-bar.jpg width=410 height=5>
+
+
+</td></tr></table>
+
+<p><img width=260 height=196 src="vor-generic.jpg"><br>
+<font face="verdana,arial,helvetica" size=2><b>Included Generic Version
+
+
+<script language="javascript">
+<!--
+
+var imgslist = new Array(
+"vor-btn1.gif",
+"vor-btn2.gif",
+"vor-btn3.gif",
+"vor-btn4.gif",
+"vor-btn5.gif",
+"vor-btn6.gif",
+"vor-scn1.gif",
+"vor-scn2.gif",
+"vor-scn3.gif",
+"vor-scn4.gif",
+"vor-scn5.gif",
+"vor-scn6.gif"
+);
+
+var imgs=new Array();
+if (document.images)
+ for (x=0; x<imgslist.length; x++)
+  {imgs[x]=new Image(); imgs[x].src = imgslist[x];}
+
+//-->
+</script>
+
+
+</body></html>

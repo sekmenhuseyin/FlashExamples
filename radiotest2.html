@@ -1,0 +1,36 @@
+<!--keeps score in input text field  -->
+<html>
+<head>
+<title>Quiz show: 1 question </title>
+<script>
+var player;
+var correct = "b";
+function checkanswer() {
+var i;
+for (i=0;i<document.question.qp.length;i++) {
+ if (document.question.qp[i].checked) {
+     player = document.question.qp[i].value;
+   }
+}
+if (player==correct) {
+	document.question.score.value = 1+parseInt(document.question.score.value);}
+
+return false;
+}
+
+
+</script>
+</head>
+<body>
+<img name="pic" src="three.jpg" tppabs="http://newmedia.purchase.edu/~Jeanine/three.jpg"/> <br/>
+<form name="question" onSubmit="return checkanswer();">
+<input type="radio" name="qp" value="a"/>a birthday
+<input type="radio" name="qp" value="b"/>Daniel passing his defense
+<input type="radio" name="qp" value="c"/>primary win
+<input type="radio" name="qp" value="d"/>Olympics
+<br/>
+<input type="submit" value="CHECK"/> <br/>
+<input type="text" value="0" name="score">
+</form>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<html>
+<head>
+<title>Check Boxes and Radio Buttons Simplified</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+<h1>Check Boxes and Radio Buttons Simplified</h1>
+<p>by Bill Tagliaferro<br>
+  [<a href="checkboxestutorial.zip">Download Source</a>]</p>
+<p>This tutorial will show you how to use Check Boxes and Radio Buttons in Flash forms.  
+Check Boxes and Radio Buttons are nothing more than variables that are set to ON or OFF based on some simple movie clip.  
+This tutorial will illustrate just how simple they can be.  For those code wizards out there a more sophisticated  
+version of Check Boxes and Radio Buttons will also be provided that can act as a generic form element.
+</p>
+<!--Check Boxes and Radio Buttons Simplified (C) Copyright ENS Inc. -->
+<center>
+<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+ codebase="http://active.macromedia.com/flash2/cabs/swflash.cab#version=4,0,0,0"
+ ID=CheckBoxes WIDTH=550 HEIGHT=400>
+	<PARAM NAME=movie VALUE="CheckBoxes.swf"> 
+	<PARAM NAME=quality VALUE=high> 
+	<PARAM NAME=bgcolor VALUE=#000000> 
+	<EMBED src="CheckBoxes.swf" 
+		quality=high 
+		bgcolor=#000000  
+		WIDTH=550 
+		HEIGHT=400 
+		TYPE="application/x-shockwave-flash" 
+		PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">
+	</EMBED>
+</OBJECT>
+</center>
+</p>
+
+<p>This tutorial is intended for beginning Flash 4 users.</p>
+<ul>
+  <li>This tutorials may help.  It can be found at:<br><br>
+		<a  href="http://www.enetserve.com/tutorials/sendmail1.html" target="_blank">Flash 4 Forms & Text Boxes</a> or 
+		<a  href="http://www.virtual-fx.net/sendmail.htm" target="_blank">Text Fields & Send Mail Form</a></li>
+  <li>Download the <a href="checkboxestutorial.zip">source</a> files and have them unzipped for review during this tutorial.</li>
+</ul>
+<hr>
+<h2>Step-by-step</h2>
+<h3>Overview:</h3>
+<p >Check Boxes and Radio Buttons are an essential part of many forms.  HTML 
+provides convenient way to deal with these; however, in Flash they are a little more 
+illusive than plain text fields.  Furthermore it is nearly impossible to use them in Flash
+without understanding as little about variables.  
+<br><br>With that in mind here is how we will approach this subject:</p>
+<ol>
+  <li>A little "variable" background to help understand what will be sent back to your server.</li><br>
+  <li>A simple, single element, Check Box</li><br>
+  <li>A simple, single element, Radio Button</li><br>
+  <li>A generic, multiple element, Check Box</li><br>
+</ol>
+<hr>
+<h3><i>Before we begin</i></h3>
+<p >The number of variables determines whether to use GET or POST to pass the variables 
+	back to your server. The GET method appends the variables to the end of the
+    URL, and is used when a small number of variables are involved. The POST method
+    sends the variables in a separate header, and is capable of sending much longer
+    strings.  The example used in this tutorial uses the POST method.  Whatever method
+	you choose you will need a CGI on your server that receives the form data and does
+	something with it.  A generic CGI is provided with this tutorial that can be used for testing your forms.
+</p>
+<ol type=1>
+<li><h3>A little "variable" background</h3>
+	<ol type=a>
+		<li>Variables are set in Flash with the "ACTIONS" tab of the frame properties or the "ACTIONS" tab of the instance properties.<br><br>
+	      	<span style="margin-left:2%">
+				For example:    <font  color="#800000">Set Variable: Checkbox1 = "on"</font>
+			</span><br><br>
+		<li>Variables are associated with Scenes and movie clips separately.  Sending variables from a movie clip does not
+			send the variables from the scene that contained it.
+		<li>All variables are sent not just the ones that you have in your form.  If you have used other
+			variables they will be sent to your server as well.  The CGI must sort out which ones to use and which to ignore.
+	</ol><br><br>
+<li><h3>A simple, single element, Check Box</h3>
+	<ol type=a>
+		<li>Building the Check Box movie clip.
+			<ol type=i>
+				<li>The Check Box will be a movie clip with two keyframes, one for the unchecked state and the other for the checked state.
+				<li>Click on <b>Insert: New Symbol [or Ctrl F8]</b> to open the Symbol Properties window.
+				<li>Give the symbol a name of "Checkbox1" and make sure that the "Movie Clip" option is selected.
+				<li>In layer 1 and keyframe 1 build your unchecked box.
+				<li>In layer 1 add a second keyframe in frame 2 <b>[F6]</b> and make this your checked box.
+				<li>Double click on each keyframe and assign a STOP action.
+			</ol>
+		<li>Adding a button to the Check Box.
+			<ol type=i>
+				<li>Lock layer 1.
+				<li>Click on <b>Insert: Layer [or click on the "+"]</b> to insert layer 2.
+				<li>Place a filled area over your unchecked box.
+				<li>Select this filled area and press <b>F8</b> to save this as a button.  Give it a name of "BoxButton" and make sure the "Button" option is selected.
+				<li>Click in frame 2 of layer 2 and press <b>F6</b> to insert another keyframe.
+				<li>Double click on the BoxButton to open the Instance Properties window and then click on the "Edit Symbol" icon (it looks like a pencil).
+				<li>Click in the "Hit" frame and press <b>F6</b> to insert a key frame.
+				<li>Now click in the "Up" frame and delete the box and any lines that may be there.<br><br>
+					This will give your Checkbox1 movie clip a "Hot Spot" without actually seeing the button.<br><br>
+				<li>Now go back and edit the Checkbox1 movie clip.  You can get there several ways.  If you get lost, 
+					open your library and double click on the Checkbox1.
+			</ol>
+		<li>Setting the button actions.
+			<ol type=i>
+				<li>Since there are two keyframe in layer 2, that have an instance of our button in them, they will act as two separate buttons and consequently have two separate actions assigned.
+				<li>Click in frame 1 of layer 2 to select the frame.
+				<li>Double click on the shaded area, that is your button hot spot, to open the Instance Properties window.
+				<li>Click on the "Actions" tab.   We want two things to happen when this button is clicked.
+				<ol type=1>
+					<li>Advance this clip to the next frame (checked) and,
+					<li>Set the Checkbox1 variable to "on".
+				</ol>
+				<li>The actions look like this:<br><br>
+						<font  color="#800000">
+						On (Release)<br>
+							<span style="margin-left:2%">
+      						Go to Next Frame<br>
+      						Set Variable: "..:Checkbox1" = "on"
+							</span>
+						End On</font><br><br>
+				<li>Now we do the same for keyframe 2.  Click in keyframe 2 of layer 2.
+				<li>Double click on the shaded area, that is your button hot spot, to open the Instance Properties window.
+				<li>Click on the "Actions" tab.   We want two things to happen when this button is clicked.
+				<ol type=1>
+					<li>Send this clip to the previous frame (unchecked) and,
+					<li>Set the Checkbox1 variable to "off".
+				</ol>
+				<li>The actions look like this:<br><br>
+						<font  color="#800000">
+						On (Release)<br>
+							<span style="margin-left:2%">
+      						Go to Previous Frame<br>
+      						Set Variable: "..:Checkbox1" = "off"
+							</span>
+						End On</font><br><br>
+			</ol>
+			<p >At this point you have everything you need for simple check boxes.  To add
+				more check boxes just change the number at the end or use some other
+				variable name for your check box.  Remember you can "Duplicate" movie clips
+				and then edit them to change the number.
+			</p>
+			<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+			 codebase="http://active.macromedia.com/flash2/cabs/swflash.cab#version=4,0,0,0"
+ 			ID=CheckBoxesSample WIDTH=150 HEIGHT=200>
+ 			<PARAM NAME=movie VALUE="CheckBoxesSample.swf"> 
+			<PARAM NAME=quality VALUE=high> 
+			<PARAM NAME=bgcolor VALUE=#000000> 
+				<EMBED src="CheckBoxesSample.swf" 
+				quality=high 
+				bgcolor=#000000  
+				WIDTH=150 
+				HEIGHT=200 
+				TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">
+				</EMBED>
+			</OBJECT>
+	</ol><br><br>
+<li><h3>A simple, single element, Radio Button</h3>
+	<p >Radio Button and Check Boxes are nearly identical.  The only real difference is that
+		radio buttons are usually associated with a set of choices in which one one can be selected, 
+		consequently all the radio buttons in a group must know what the others are doing.  
+		In other words, when one is "Checked" it must "Uncheck" all the others.
+	</p>
+	<p >We will use our Checkbox from above to build out radio buttons.  The only real change
+		will be that when we set our variable to "on" or "off" we must also set all the
+		other radio button variables to "off" or "on".
+	</p>
+	<p >Let's start with just three radio buttons to make things simple. 
+	</p>
+	<ol type=a>
+		<li>Duplicate "Checkbox1" three times giving them the names: radio1, radio2, and radio3.
+		<li>From the library window double click on each radio button movie clip and change the variable from "Checkbox1" to "Radio1" etc.  
+		<li>While editing each radio button click in keyframe 2 of layer 2 and and then select <b>Insert: Clear Keyframe [ Shft F6]</b> to remove the second button and cause the first button to span both frames.
+			This is necessary because radio buttons don't actually have an "OFF" option, it occurs when any other radio button is clicked.
+		<li>Now when Radio1 is set to "on" it must set Radio2 and Radio3 to "off", and likewise for Radio2 and Radio3.
+		<li>In this case each instance of the radio button will need to be named so that the radio buttons can position the movie clips with a "Tell Target" operation.
+		<li>After you place each radio button on stage right click on it and give it the same name as the movie clip itself i.e. Radio1, 2 3.
+		<li>Here is the code that set Radio1 to Checked:<br><br>
+						<font  color="#800000">
+						On (Release)<br>
+							<span style="margin-left:2%">
+      						Go to Next Frame<br>
+      						Set Variable: "..:Radio1" = "on"<br>
+      						Comment: **** For Radio Button 2 *****<br>
+						      Begin Tell Target ("/Radio2")<br>
+								<span style="margin-left:2%">
+            						Go to and Stop (1)<br>
+								</span>
+      						End Tell Target<br>
+      						Set Variable: "..:Radio2" = "off"<br>
+      						Comment: **** For Radio Button 3 *****<br>
+						      Begin Tell Target ("/Radio3")<br>
+								<span style="margin-left:2%">
+            						Go to and Stop (1)<br>
+								</span>
+      						End Tell Target<br>
+   	  						Set Variable: "..:Radio3" = "off"<br>
+							</span>
+						End On</font><br><br>
+		<li>Repeat this logic for all the other radio buttons and you should be on your way.
+			<br clear="all">
+			<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+			 codebase="http://active.macromedia.com/flash2/cabs/swflash.cab#version=4,0,0,0"
+ 			ID=CheckBoxesSample WIDTH=150 HEIGHT=200>
+ 			<PARAM NAME=movie VALUE="CheckBoxesSample.swf"> 
+			<PARAM NAME=quality VALUE=high> 
+			<PARAM NAME=bgcolor VALUE=#000000> 
+				<EMBED src="CheckBoxesSample.swf" 
+				quality=high 
+				bgcolor=#000000  
+				WIDTH=150 
+				HEIGHT=200 
+				TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">
+				</EMBED>
+			</OBJECT>
+		<p >REMEMBER - the Flash form is probably the easy part of sending form data to a server.  The server
+			must have a CGI ready to accept this form data and then do something with it.  CGI's come in many flavors: C, PERL, JAVA, ASP, etc.
+			The CGI that is used with this tutorial is written in C.  It simply returns the form fields and their values and send them to the browser and
+			 to an email address specified in the URL. 
+		</p>
+	</ol><br><br>
+<li><h3>A generic, multiple element, Check Box</h3>
+	<p >A generic, multiple element, Check Box requires more sofisticated coding.  Another example of this can be found
+		at <a  href="http://www.macromedia.com/support/flash/interactivity/widgets/widget.html" target="_blank">Macromedia</a>.  
+		The Macromedia site is very comprehensive and based on the Widgets Sample in Flash 4.  I strongly suggest you visit this site and print the pages that cover this topic.
+		The Macromedia site covers Radio Buttons very well and has a good lini-by-line explaination
+		  of the code.  We will concentrate on Check Boxes here and leave the Radio Buttons to them.
+	</p>
+	<p >There are only two difference between the simple Check Box above and the generic, mulitple element Check Box.
+	 </p>
+		<ol type=i>
+		<li>This initialization script in keyframe 1, layer 1 on the Check Box movie clip:<br>
+		<br><font  color="#800000">
+			If (initialized = 0)<br>
+				<span style="margin-left:2%">
+      			Set Variable: "initialized" = 1<br>
+      			Set Variable: "numBox" = ../:numBox<br>
+      			Set Variable: "..:numBox" = numBox + 1<br>
+      			Set Variable: "numBox" = numBox + 1<br>
+      			Set Variable: "box" = "..:cBox_" & numBox<br>
+      			Set Variable: box = "off"<br>
+				</span>
+			End If<br>
+			Stop<br><br></font>
+		<li>The button actions for checked and unchecked:<br><br>
+			<font  color="#800000">
+			Checked:<br>
+				On (Release)<br>
+					<span style="margin-left:2%">
+      				Set Variable: "box" = "..:cBox_" & numBox<br>
+      				Set Variable: box = "on"<br>
+      				Go to Next Frame<br>
+					</span>
+				End On<br><br>
+			Un-Checked:<br>
+				On (Release)<br>
+					<span style="margin-left:2%">
+      				Set Variable: "box" = "..:cBox_" & numBox<br>
+      				Set Variable: box = "off"<br>
+      				Go to Previous Frame<br>
+					</span>
+				End On<br><br>
+			</font>
+		</ol>
+		<p >Once you build one of these check boxes you can simply drag and drop them into a scene 
+			and they will automatically build variables for cBox_1, cBox_2, ........  All you have to do in your CGI 
+			is to remember what property or option each check box was associated with.
+		</p>
+		<br><br>
+</ol>
+<hr>
+<h2>Need More Help?</h2>
+<p>[<a href="checkboxestutorial.zip">Download Source</a>]<br>Don't forget to get the source files and look them over.</p>
+<hr>
+<h2>Troubleshooting</h2>
+<p>It's safe to say that there are a number of potential pitfalls in building a Flash 4 movie of this type.  Although this is a rather simple illustration of Flash 4 programming
+it is filled with movie clip references and variables.  My suggestion in making a movie of this type is to have
+paper and pencil handy and define variables and movie clips before hand.  Make notes as you work.  Be consistent in your naming convention.</p>
+</body>
+</html>

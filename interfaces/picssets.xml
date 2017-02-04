@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="mouseoversets.xsl" type="text/xsl"?>
+
+<sets>
+ <set>
+  <oimage>Liz-book.jpg</oimage>
+  <nimage>Darcy3.jpg</nimage>
+ </set>
+ <set>
+  <oimage>soccer1.jpg</oimage>
+  <nimage>soccer2.jpg</nimage>
+ </set>
+</sets>

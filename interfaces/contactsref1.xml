@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!DOCTYPE mylist [
+<!ELEMENT mylist (contact+)>
+<!ELEMENT contact (name,email)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+]>
+<?xml-stylesheet href="contacts1.xsl" type="text/xsl"?>
+<mylist>
+  <contact>
+	<name>Peter Ohring</name>
+        <email>peter.ohring@purchase.edu</email>
+  </contact>
+  <contact>
+	<name>Joel Tenenbaum</name>
+        <email>joel@zephyr.ns.purchase.edu</email>
+  </contact>
+  <contact>
+	<name>Marty Lewinter</name>
+        <email>mathman@purchase.edu</email>
+  </contact>
+</mylist>

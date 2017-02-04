@@ -1,0 +1,74 @@
+<html> <head> <script type="text/javascript">
+
+
+function displaypicture(title,framestyle){
+  // load the xslt file
+
+try {
+var xslt = new ActiveXObject("Msxml2.XSLTemplate");
+var xslDoc = new ActiveXObject("Msxml2.FreeThreadedDOMDocument");
+var xslProc;
+xslDoc.async = false;
+xslDoc.resolveExternals = false;
+xslDoc.load("picturedisplay.xsl"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/picturedisplay.xsl*/);
+xslt.stylesheet = xslDoc;
+var xmlDoc = new ActiveXObject("Msxml2.DOMDocument");
+xmlDoc.async = false;
+xmlDoc.resolveExternals = false;
+xmlDoc.load("picturearchive.xml"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/picturearchive.xml*/);
+xslProc = xslt.createProcessor();
+xslProc.input = xmlDoc;
+xslProc.addParameter("title", title);
+xslProc.addParameter("framechoice",framestyle);
+xslProc.transform();
+document.write(xslProc.output);
+}
+catch(e) {
+try{
+var xslStylesheet;
+var xsltProcessor = new XSLTProcessor();
+var myDOM;
+var xmlDoc;
+  var myXMLHTTPRequest = new XMLHttpRequest();
+  myXMLHTTPRequest.open("GET", "picturedisplay.xsl"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/picturedisplay.xsl*/, false);
+  myXMLHTTPRequest.send(null);
+
+  xslStylesheet = myXMLHTTPRequest.responseXML;
+  xsltProcessor.importStylesheet(xslStylesheet);
+
+  // load the xml file
+  myXMLHTTPRequest = new XMLHttpRequest();
+  myXMLHTTPRequest.open("GET", "picturearchive.xml"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/picturearchive.xml*/, false);
+  myXMLHTTPRequest.send(null);
+  xmlDoc = myXMLHTTPRequest.responseXML;
+
+  // set the parameter using the parameter passed to the outputgroup function
+  xsltProcessor.setParameter(null,"title",title);
+  xsltProcessor.setParameter(null,"framechoice",framestyle);
+  var fragment = xsltProcessor.transformToFragment(xmlDoc,document);
+  document.getElementById("answer").innerHTML = "";
+   myDOM = fragment;
+  document.getElementById("answer").appendChild(fragment);
+}
+catch(e) {
+  alert("Unable to do xml/xsl processing");
+}
+}
+
+}
+
+</script>  </head>
+<body>
+<a href="javascript:displaypicture('Proud Trio','red wood');">Proud Trio, red wood</a><br/>
+<a href="javascript:displaypicture('In the stands','silver');">In the stands, silver</a><br/>
+<a href="javascript:displaypicture('Marching In','red wood');">Marching In, red wood</a><br/>
+<a href="javascript:displaypicture('Adoring Mom','blue');">Adoring Mom, blue </a><br/>
+<a href="javascript:displaypicture('At the picnic','silver');">At the picnic, silver </a><br/>
+<div id="answer">
+</div>
+
+</body>
+</html>
+
+</body>
+</html>

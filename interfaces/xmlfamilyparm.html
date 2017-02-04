@@ -1,0 +1,78 @@
+<html> <head> <script type="text/javascript">
+
+
+function outputgroup(subject){
+  // load the xslt file
+
+try {
+var xslt = new ActiveXObject("Msxml2.XSLTemplate");
+var xslDoc = new ActiveXObject("Msxml2.FreeThreadedDOMDocument");
+var xslProc;
+xslDoc.async = false;
+xslDoc.resolveExternals = false;
+xslDoc.load("siblings.xsl"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/siblings.xsl*/);
+xslt.stylesheet = xslDoc;
+var xmlDoc = new ActiveXObject("Msxml2.DOMDocument");
+xmlDoc.async = false;
+xmlDoc.resolveExternals = false;
+xmlDoc.load("family.xml"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/family.xml*/);
+xslProc = xslt.createProcessor();
+xslProc.input = xmlDoc;
+xslProc.addParameter("subj", subject);
+xslProc.transform();
+document.write(xslProc.output);
+}
+catch(e) {
+try{
+var xslStylesheet;
+var xsltProcessor = new XSLTProcessor();
+var myDOM;
+var xmlDoc;
+  var myXMLHTTPRequest = new XMLHttpRequest();
+  myXMLHTTPRequest.open("GET", "siblings.xsl"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/siblings.xsl*/, false);
+  myXMLHTTPRequest.send(null);
+
+  xslStylesheet = myXMLHTTPRequest.responseXML;
+  xsltProcessor.importStylesheet(xslStylesheet);
+
+  // load the xml file
+  myXMLHTTPRequest = new XMLHttpRequest();
+  myXMLHTTPRequest.open("GET", "family.xml"/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/family.xml*/, false);
+  myXMLHTTPRequest.send(null);
+  xmlDoc = myXMLHTTPRequest.responseXML;
+
+  // set the parameter using the parameter passed to the outputgroup function
+  xsltProcessor.setParameter(null,"subj",subject);
+  var fragment = xsltProcessor.transformToFragment(xmlDoc,document);
+  document.getElementById("answer").innerHTML = "";
+   myDOM = fragment; 
+  document.getElementById("answer").appendChild(fragment);
+}
+catch(e) {
+  alert("Unable to do xml/xsl processing");
+}
+}
+
+} 
+
+</script>  </head>  
+<body>
+<a href="javascript:outputgroup('Jeanine');">Jeanine</a><br/>
+<a href="javascript:outputgroup('Anne');">Anne</a><br/>
+<a href="javascript:outputgroup('Aviva');">Aviva</a><br/>
+<a href="javascript:outputgroup('Daniel');">Daniel</a><br/>
+<a href="javascript:outputgroup('David');">David</a><br/>
+<a href="javascript:outputgroup('Tom');">Tom</a><br/>
+<a href="javascript:outputgroup('Debi');">Debi</a><br/>
+<a href="javascript:outputgroup('Joshua');">Joshua</a><br/>
+<a href="javascript:outputgroup('Corey');">Corey</a><br/>
+<a href="javascript:outputgroup('Orphan Annie');">Orphan Annie</a><br/>
+<div id="answer">
+</div>
+<br/> <br/>
+<a href="xmlparmseither.html" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/xmlparmseither.html">Repeat</a>
+</body>
+</html>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="links.xsl" type="text/xsl"?>
+<mylist>
+ <favorite>
+   <name>The New York Times site</name>
+   <url>http://www.nytimes.com</url> 
+   <prompt>on-line New York Times</prompt>
+ </favorite>
+<favorite>
+   <name>Jeanine Meyer's academic activities</name>
+   <url>http://newmedia.purchase.edu/~Jeanine</url> 
+   <prompt>my newmedia site</prompt>
+ </favorite>
+<favorite>
+   <name>backup and lecture notes</name>
+   <url>http://members.bellatlantic.net/~vze2s839</url> 
+   <prompt>backup site</prompt>
+ </favorite>
+<favorite>
+   <name>Creating db class site</name>
+   <url>http://sharon.ns.purchase.edu/jeanine</url> 
+   <prompt>sharon</prompt>
+ </favorite>
+</mylist>

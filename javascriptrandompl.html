@@ -1,0 +1,34 @@
+<html>
+<head><title>Random test </title>
+<script language=Javascript>
+var faces = new Array;
+ faces[0] = new Image(50,50);
+ faces[0].src = "dice1.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dice1.gif*/;
+ faces[1] = new Image(50,50);
+ faces[1].src = "dice2.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dice2.gif*/;
+ faces[2] = new Image(50,50);
+ faces[2].src = "dice3.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dice3.gif*/;
+ faces[3] = new Image(50,50);
+ faces[3].src = "dice4.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dice4.gif*/;
+ faces[4] = new Image(50,50);
+ faces[4].src = "dice5.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dice5.gif*/;
+ faces[5] = new Image(50,50);
+ faces[5].src = "dice6.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/dice6.gif*/;
+
+
+function dthrow() {
+var choice;
+choice=Math.floor(Math.random()*6);
+document.dieimagea.src=faces[choice].src;
+choice=Math.floor(Math.random()*6);
+document.dieimageb.src=faces[choice].src;
+}
+</script>
+</head>
+
+<body>
+<img src="dice1.gif" tppabs="http://newmedia.purchase.edu/~Jeanine/dice1.gif" name="dieimagea"> <img src="dice1.gif" tppabs="http://newmedia.purchase.edu/~Jeanine/dice1.gif" name="dieimageb">
+<br>
+<a href="" onClick="dthrow(); return false;">Click to throw dice.</a>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<?xml version="1.0" ?>
+<vxml version="2.0">
+<var name="cchoice" />
+<var name="win" expr="0"/>
+<var name="loss" expr="0"/>
+<var name="tie" expr="0"/>
+<script>
+var moves=new Array('rock','paper','scissors');
+function randommove() {
+ var r = Math.floor(Math.random()*3);
+ return moves[r];
+}
+</script>
+<menu id="play">
+ <prompt count="1" timeout="2.0">
+   <audio>Say rock, paper, scissors, score or quit </audio>
+ </prompt>
+ <prompt count="2" timeout="2.0">
+  <audio>Please make a choice, rock, paper or scissors, or say score to get the score or quit to quit </audio>
+ </prompt>
+ <prompt count="3" timeout="2.0">
+  <audio> I guess you're done. </audio>
+  <exit/>
+ </prompt>
+ <nomatch>
+  <audio>I didn't understand. </audio>
+  <reprompt/>
+ </nomatch>
+<noinput>
+  <audio> I didn't hear anything </audio>
+ <reprompt/>
+</noinput>
+ 
+ <choice next="#prock">rock </choice>
+ <choice next="#pscissors">scissors </choice>
+ <choice next="#ppaper">paper </choice>
+ <choice next="#sscore">score</choice>
+ <choice next="#squit">quit</choice>
+</menu>
+
+
+<form id="sscore">
+ <block>
+ <audio>Scores are wins <break size="medium"/><value expr="win"/>. Losses 
+ <break time="500ms"/>
+ <value expr="loss"/> <break time="800ms"/>
+  Ties <break size="medium"/> <value expr="tie"/> </audio>
+ <goto next="#play"/>
+ </block>
+</form>
+<form id="prock">
+ <block>
+ <assign name="cchoice" expr="randommove()" />
+ <audio> Computer played <value expr="cchoice"/> </audio>
+ <if cond="cchoice=='rock'">
+   <assign name="tie" expr="tie+1"/>
+   <audio> Tie </audio>
+ <elseif cond="cchoice=='paper'"/>
+   <assign name="loss" expr="loss+1"/>
+   <audio>You lose. Paper covers rock. </audio>
+ <else/>
+   <assign name="win" expr="win+1"/>
+   <audio> You win. Rock breaks scissors </audio>
+ </if>
+<goto next="#play"/>
+ </block>
+</form>
+<form id="ppaper">
+ <block>
+ <assign name="cchoice" expr="randommove()" />
+ <audio> Computer played <value expr="cchoice"/> </audio>
+ <if cond="cchoice=='paper'">
+   <assign name="tie" expr="tie+1"/>
+   <audio> Tie </audio>
+ <elseif cond="cchoice=='scissors'"/>
+   <assign name="loss" expr="loss+1"/>
+   <audio>You lose. Scissors cuts paper. </audio>
+ <else/>
+   <assign name="win" expr="win+1"/>
+
+   <audio> You win. Paper covers rock. </audio>
+ </if>
+<goto next="#play"/>
+ </block>
+</form>
+<form id="pscissors">
+ <block>
+ <assign name="cchoice" expr="randommove()" />
+ <audio> Computer played <value expr="cchoice"/> </audio>
+ <if cond="cchoice=='scissors'">
+   <assign name="tie" expr="tie+1"/>
+   <audio> Tie </audio>
+ <elseif cond="cchoice=='rock'"/>
+   <assign name="loss" expr="loss+1"/>
+   <audio>You lose. Rock breaks scissors. </audio>
+ <else/>
+   <assign name="win" expr="win+1"/>
+   <audio> You win. Scissors cuts paper. </audio>
+ </if>
+<goto next="#play"/>
+ </block>
+</form>
+<form id="squit">
+ <block>
+ <audio>Good bye </audio>
+ <exit />
+ </block>
+</form>
+</vxml>

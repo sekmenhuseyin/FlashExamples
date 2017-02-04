@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<scenes>
+<scene>
+<name>Winter Piano Party: Esther and Aviva</name>
+<picture>avivagrandma.jpg</picture>
+<speed>6</speed>
+</scene>
+<scene>
+<name>Uday with Amy and her sisters</name>
+<picture>sisters.jpg</picture>
+<speed>10</speed>
+</scene>
+<scene>
+<name>Piano and flutes</name>
+<picture>pianoandflutes.jpg</picture>
+<speed>8</speed>
+</scene>
+<scene>
+<name>Jeanine at Storm King</name>
+<picture>hat.jpg</picture>
+<speed>4</speed>
+</scene>
+<scene>
+<name>Daniel</name>
+<picture>daniel1.jpg</picture>
+<speed>3</speed>
+</scene>
+</scenes>

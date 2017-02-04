@@ -1,0 +1,109 @@
+<vxml version="2.0">
+ <form>
+  <field name="childid">
+   <prompt>
+     <audio src="whosthis.wav">Hello. Who is calling?</audio> 
+   </prompt>
+<grammar type="application/x-gsl" mode="voice">
+<![CDATA[
+[
+[dan daniel (daniel meyer) (dan meyer)] {<childid "daniel">}
+[aviva (aviva meyer)] {<childid "aviva">}
+[esther (esther minkin) ] {<childid "esther">}
+]
+]]>
+</grammar>
+ 
+<catch event="noinput nomatch"> <audio src="sorry.wav">Sorry. I didn't get that.</audio> <exit/> </catch>
+ 
+  <filled>
+    <if cond="'daniel'==childid">
+      <goto next="#danfollowup"/> 
+    <elseif cond="'aviva'==childid"/>
+      <goto next="#avivafollowup"/>
+    <elseif cond="'esther'==childid"/>
+      <goto next="#estherfollowup"/>
+    <else/>
+      <reprompt/>
+    </if>
+  </filled>
+ </field>
+</form>
+
+<form id="danfollowup">
+    <field name="today"  >
+     <prompt>
+     <audio src="congratsdan.wav" >Congratulations on the new job. Did you work on your thesis, or do aikido or jo today?</audio>
+     </prompt>
+<grammar type="application/x-gsl" mode="voice">
+<![CDATA[
+[
+[aikido (i key dough)] {<today "aikido">}
+[thesis (work)] {<today "thesis">}
+[jo (joe) ] {<today "jo">}
+[both (all) (everything) ((i key dough) jo)]{<today "both">}
+[none nothing (sort of)] {<today "nothing">}
+]
+]]>
+</grammar>
+<catch event="noinput nomatch"> <audio >I didn't quite understand. Call or send e-mail.</audio> <exit/> </catch>
+<filled>
+<if cond="today=='aikido'" >
+       <audio>Some aikido is fine. </audio>
+      <elseif cond="today=='thesis'" />
+        <audio>Good, but do other things also.</audio>
+      <elseif cond="today=='jo'" />
+         <audio>don't get hit in the head.</audio>
+       <elseif cond="today=='both'" />
+         <audio>Doing some of everything is best. </audio>
+       <elseif cond="today=='nothing'"/>
+         <audio> You deserve a break, but remember you want to be done by September.                  </audio>
+       <else/>
+         <audio> See you soon.</audio>
+      </if>
+</filled>
+</field> 
+  <block>
+  <audio> Good bye </audio>
+   </block>   
+</form> 
+
+   <form id="avivafollowup">
+     <var name="rest" expr="1000"/>
+     <field name="bcount" type="number">
+      <prompt>
+      <audio src="howmanycranes.wav">Hello, Aviva. How many cranes have you made? </audio>
+      </prompt>
+<grammar type="application/x-gsl" mode="voice" >
+<![CDATA[
+ NATURAL_NUMBER_THRU_9999
+]]>
+</grammar>
+ 
+<catch event="noinput nomatch"> <audio src="sorry.wav">Sorry. I didn't get that.</audio> <exit/> </catch>
+ 
+
+     <filled>
+      <assign name="rest" expr="1000-bcount"/>
+      <audio> <value expr="rest" />  </audio>
+      <audio src="togo.wav"> to go. </audio>
+      <if cond="rest&lt;200" >
+       <audio src="homestretch.wav">You're in the home stretch </audio>
+      <elseif cond="rest&lt;500" />
+        <audio src="morethanhalf.wav">More than half way </audio>
+       <elseif cond="rest&lt;800" />
+         <audio src="goodstart.wav">Off to a good start </audio>
+       <else/>
+         <audio> Get a move on </audio>
+      </if>
+       <audio src="goodbye.wav">Good bye. </audio>
+     </filled>
+     </field>
+    </form>
+
+     <form id="estherfollowup">
+     <block>
+      <audio >Hello, Mommy. This is all I can do now. </audio>
+     </block>
+    </form>
+</vxml>

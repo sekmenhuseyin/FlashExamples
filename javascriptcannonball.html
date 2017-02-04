@@ -1,0 +1,163 @@
+<html><head><title>Cannonball  </title>
+<style type="text/css">
+
+ #ball {position: absolute; top: 300px; left: 400px; }
+ #ground {position: absolute; top: 500px; left: 0px; }
+ #block {position: absolute; top: 200px; left:  800px}
+ #cannon {position: absolute; top: 400px; left: 100px;}
+
+</style>
+<script language="JavaScript">
+function getObj(name)
+                   { 
+                     if (document.getElementById)
+                     {
+                           this.obj = document.getElementById(name);
+                           this.style = document.getElementById(name).style;
+        
+                        
+                     }
+                     else if (document.all)
+                     {                        
+                           this.obj = document.all[name];
+                           this.style = document.all[name].style;
+                       
+                     }
+                     else if (document.layers)
+                     {
+                           this.obj = document.layers[name];
+                           this.style = document.layers[name];
+                         
+                     }
+                   }
+
+
+
+
+var currentx = 400;
+var currenty = 400;
+var blockobj;
+var ballobj;
+var groundobj;
+var tid;
+var oxv = 7 ;
+var oyv = -20;
+var oldyv = -20;
+var xv;
+var yv;
+var g = 2; 
+
+function move(deltax, deltay) {
+
+	
+        currentx += deltax;
+        currenty += deltay;
+        ballobj.style.top = currenty;
+        ballobj.style.left = currentx;
+
+}
+function setposition(obj,posx,posy) {
+ obj.style.top = posy;
+ obj.style.left= posx;
+}
+
+
+function fire() {
+ballobj = new getObj("ball");
+
+blockobj = new getObj("block");
+
+groundobj= new getObj("ground");
+
+currentx= 100+250;
+currenty= 400+10;
+if (document.layers) {
+     document.layers["block"].document.images["blockname"].src="block.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/block.gif*/;
+    }
+    else {
+    if (document.images) {
+      document.images["blockname"].src="block.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/block.gif*/;
+    }}
+setposition(blockobj,800,200);
+setposition(groundobj,0,500);
+setposition(ballobj,currentx,currenty);
+yv = oyv;
+xv = oxv;
+oldyv = yv;
+
+tid = setInterval("travel();",200);
+}
+
+function travel(){
+ var averageyv;
+ oldyv = yv;
+ yv = yv + g;
+ averageyv = .5*(oldyv +yv);
+ if (hittarget(blockobj,"block", currentx+25, currenty+25)) {
+    stopflight();
+    if (document.layers) {
+     document.layers["block"].document.images["blockname"].src="redblock.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/redblock.gif*/;
+    }
+    else {
+    if (document.images) {
+      document.images["blockname"].src="redblock.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/redblock.gif*/;
+    }}
+    alert("you hit the block");
+ }
+ if (hittarget(groundobj, "ground", currentx+25, currenty+25)) {
+    stopflight();
+    alert("you hit the ground");
+ }
+ move(xv,averageyv);
+}
+function hittarget(obj,objname,xpos, ypos) {
+ 
+ var tx = parseInt(obj.style.left);
+ var ty = parseInt(obj.style.top);
+ var twidth ;
+ var theight;
+ if (objname=="block") {
+   twidth = 100; theight = 300;}
+ if (objname=="ground") {
+   twidth = 2000; theight = 50;}
+  if ((xpos>=tx) && (xpos<=(tx+twidth)) && (ypos>=ty) && (ypos<=(ypos+theight))) {
+    return true;}
+  else { return false;}
+}
+
+
+function stopflight () {
+  clearInterval(tid);
+}
+function setspeeds(f) {
+ 
+ oxv = 1*f.hspeed.value;
+ oyv = 1*f.vspeed.value;
+ return false;
+}
+
+
+
+</script>
+</head>
+<body>
+<div id="ball">
+<img src="ball.gif" tppabs="http://newmedia.purchase.edu/~Jeanine/ball.gif" > </div>
+<div id="block">
+<img src="block.gif" tppabs="http://newmedia.purchase.edu/~Jeanine/block.gif" name="blockname"></div>
+<div id="cannon">
+<img src="cannon.gif" tppabs="http://newmedia.purchase.edu/~Jeanine/cannon.gif"> </div>
+<div id="ground">
+<img src="ground.gif" tppabs="http://newmedia.purchase.edu/~Jeanine/ground.gif"> </div>
+              
+
+<a href="javascript:fire();">Fire cannon </a>  &nbsp; &nbsp; 
+<a href="javascript:stopflight();">Stop flight </a> <br>
+
+<form onsubmit= "return setspeeds(this);" >
+Initial horizontal Velocity<input type="text" name="hspeed" value="7">
+Initial vertical Velocity <input type="text" name="vspeed" value="-20"><br>
+<input type="submit" value="Change velocities">
+</form>
+</body>
+</html>

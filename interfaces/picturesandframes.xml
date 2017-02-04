@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!DOCTYPE products  [
+<!ENTITY archive SYSTEM "picturearchive.xml">
+]>
+<?xml-stylesheet href="presentmenu.xsl" type="text/xsl"?>
+<products>
+  &archive;
+  <frames>
+    <frametype>
+       <framename>red wood</framename>
+        <frameimage>redtop.gif</frameimage>
+    </frametype>
+    <frametype>
+           <framename>blue</framename>
+            <frameimage>bluetop.gif</frameimage>
+        </frametype>
+    <frametype>
+           <framename>silver</framename>
+            <frameimage>silvertop.gif</frameimage>
+        </frametype>
+  </frames>
+</products>

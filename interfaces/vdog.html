@@ -1,0 +1,78 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <title> Virtual Dog</title><script language="JavaScript" type="text/javascript">
+         <!--
+var curstate='normal';
+var interval=1000;
+  var elapsed=0;
+  var wagtime=0;
+  var weight=100;
+  
+var tid;
+var statepictures=new Array();
+var statelabels=new Array();
+statepictures['normal']='dog.gif'/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/dog.gif*/;
+statelabels['normal']='Dog is normal.';
+statepictures['fat']='fatdog.gif'/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/fatdog.gif*/;
+statelabels['fat']='Dog is fat.';
+statepictures['fatdead']='fatdeaddog.gif'/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/fatdeaddog.gif*/;
+statelabels['fatdead']='Dog is dead.';
+statepictures['thin']='thindog.gif ';
+statelabels['thin']='Dog is thin.';
+statepictures['thindead']='thindeaddog.gif'/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/thindeaddog.gif*/;
+statelabels['thindead']='Dog is dead.';
+statepictures['wagging']='wag.gif'/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/wag.gif*/;
+statelabels['wagging']='Dog is wagging its tail.';
+statepictures['mean']='mean.gif'/*tpa=http://newmedia.purchase.edu/~Jeanine/interfaces/mean.gif*/;
+statelabels['mean']='Dog is angry. ';
+
+function change() 
+{ 
+
+      elapsed=elapsed+interval;
+      weight=weight-1;
+   switch (curstate) {
+  case 'normal': if (weight>120) {
+ curstate='fat';}if (80>weight) {
+ curstate='thin';}break;
+  case 'fat': if (120>weight) {
+ curstate='normal';}if (weight>150) {
+ curstate='fatdead';}break;
+  case 'fatdead': break;
+  case 'thin': if (weight>80) {
+ curstate='normal';}if (60>weight) {
+ curstate='thindead';}break;
+  case 'thindead': break;
+  case 'wagging': if ((wagtime++)>5) {
+ curstate='normal';}break;
+  case 'mean': if ((wagtime++)>5) {
+ curstate='normal';}break;}document.f.label.value=statelabels[curstate];
+document.pic1.src=statepictures[curstate];
+document.f.weightx.value=weight;
+if (curstate=='fatdead'){
+    window.clearInterval(tid);}if (curstate=='thindead'){
+    window.clearInterval(tid);}
+}
+
+function start() {
+tid=setInterval("change()",interval);
+}
+function stop() {
+
+window.clearInterval(tid);
+}
+function feeddog() {
+weight=weight+10;elapsed=0;
+    }
+function petdog() {
+ wagtime=0; prewagcurrent=curstate;
+       if (Math.random()>Math.min(elapsed/interval,19)/20) 
+         {curstate="wagging";}
+       else {curstate="mean";}}
+--></script>
+      </head>
+   <body><img src="dog.gif" tppabs="http://newmedia.purchase.edu/~Jeanine/interfaces/dog.gif" name="pic1"><br><form name="f"><input type="text" name="label" value="Dog is normal."><input type="text" name="weightx" value="100"></form>
+      <hr><a href="javascript:feeddog();">Feed dog</a>    <a href="javascript:petdog();">Pet dog</a>    <a href="javascript:start();">Start play</a>    <a href="javascript:stop();">Stop play </a></body>
+</html>

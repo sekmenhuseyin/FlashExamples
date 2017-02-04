@@ -1,0 +1,47 @@
+<?xml version="1.0"?> 
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.3//EN" "http://www.wapforum.org/DTD/wml13.dtd"> 
+<wml> 
+  <card id="start" title="Find office" newcontext="true"> 
+   <p>
+   Select, type in name, click on ok, click on options, select find
+   <input name="key" type="text"/>
+    <do type="accept" label="Find">
+      <go href="find.wmls#lookup('$(key)')"/>
+    </do> 
+   </p>
+   </card> 
+   
+  <card id="result" title="Found!"> 
+    <p align="center"> 
+      <big><b>$(key) is in $(location).</b></big> 
+    </p> 
+    <do type="accept" label="Repeat?">
+     <go href="#start" />
+    </do>
+    <do type="home" label="Map" >
+      <go href="#map" />
+    </do>
+  </card> 
+ <card id="nf" title="Not found">
+   <do type="accept" label="Try again">
+    <go href="#start"/>
+   </do>
+ </card>
+<card id="dup" title="More than one">
+ <p> 
+  $(fullnames) <br/>
+  $(location)
+ </p>
+<do type="accept" label="Repeat?">
+ <go href="#start" />
+</do>
+</card>
+ <card id="map" title="Campus">
+ <p>
+ <img alt="diagram of campus" src="campus.wbmp" />
+ <do type="accept" label="Repeat">
+  <go href="#start"/>
+ </do>
+ </p>
+ </card>
+</wml> 

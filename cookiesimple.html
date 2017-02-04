@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>Saving name </title>
+<script language="JavaScript">
+// cookie will expire when client exits the browser
+function setname(value) {
+//set cookie with name 'vn'
+  var curCookie = "vn=" + escape(value);
+  document.cookie = curCookie;
+}
+
+
+// * return string containing value of specified cookie or null if cookie does not exist
+// assumes there may be other cookies
+function getname() {
+  var dc = document.cookie;
+  var prefix = "vn=";
+  var begin = dc.indexOf("; " + prefix);  // is cookie present and not the first
+  if (begin == -1) {
+    begin = dc.indexOf(prefix);   // is this the first cookie
+    if (begin != 0) return null;
+  } else
+    begin += 2;
+  var end = document.cookie.indexOf(";", begin);  // find start of next cookie
+  if (end == -1)
+    end = dc.length;
+  return unescape(dc.substring(begin + prefix.length, end));
+}
+
+var vn = getname();
+if (!vn) {
+  visitor = prompt("Hello. Please enter your name:", "");
+  setname(visitor);
+  document.write("Hello, "+visitor+". Welcome to my site.");
+}
+else {
+document.write("Welcome back, "+vn);
+
+}
+
+
+</script>
+</head>
+</html>

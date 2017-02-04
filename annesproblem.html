@@ -1,0 +1,21 @@
+<html><head><title>Add 3 numbers </title>
+<script language="JavaScript">
+function addup(f) {
+var total;
+total = 1*f.one.value + 1*f.two.value + 1*f.three.value;
+f.sum.value = total;
+return false;
+}
+</script>
+Addition: <br>
+<form name="fx" onSubmit="return addup(this);">
+Enter value: <input type=text name="one"><br>
+Enter value: <input type=text name="two"><br>
+Enter value: <input type=text name="three"><br>
+
+The sum is: <input type=text name="sum"><br>
+<input type=submit value="add up"> <br>
+<input type=reset value="clear form">
+</form>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!--keeps score (still just one question) in input text field in form
+ inserts questions from an array of questions.
+ Notice first call of loadnext is set in onload in body tag.
+ Notice removal of borders around input text fields.
+ -->
+<html>
+<head>
+<title>Quiz show: array of questions </title>
+<script>
+var player;
+var quesnumber = -1;
+var questions = [
+ ["three.jpg"/*tpa=http://newmedia.purchase.edu/~Jeanine/three.jpg*/,
+  "What are we celebrating?",
+  "a birthday",
+  "Daniel's thesis defense",
+  "primary",
+  "Olympics",
+  "b"
+ ],
+ ["emcoreydog.jpg"/*tpa=http://newmedia.purchase.edu/~Jeanine/emcoreydog.jpg*/,
+   "Who are these people?",
+   "Esther, Corey, and dog",
+   "Leanne's family",
+   "Jeanine's neighbors",
+   "Aviva's friends",
+   "a"
+ ]
+]
+
+function checkanswer() {
+var i;
+for (i=0;i<document.question.qp.length;i++) {
+ if (document.question.qp[i].checked) {
+     player = document.question.qp[i].value;
+   }
+}
+if (player==correct) {
+	document.question.score.value = 1+parseInt(document.question.score.value);}
+loadnext();
+return false;
+}
+function loadnext() {
+ quesnumber++;
+ if (quesnumber==questions.length) {quesnumber = 0;}
+ document.pic.src = questions[quesnumber][0];
+ document.question.qstart.value = questions[quesnumber][1];
+ document.question.ansa.value = questions[quesnumber][2];
+ document.question.ansb.value = questions[quesnumber][3];
+ document.question.ansc.value = questions[quesnumber][4];
+ document.question.ansd.value = questions[quesnumber][5];
+ correct= questions[quesnumber][6];
+}
+
+</script>
+</head>
+<body onload="loadnext();">
+<img name="pic" src="three.jpg" tppabs="http://newmedia.purchase.edu/~Jeanine/three.jpg" height="300"/> <br/>
+<form name="question" onSubmit="return checkanswer();">
+<input type="text" name="qstart" size="40" style="border:none;"/>
+<br/>
+<input type="radio" name="qp" value="a"/>
+<input type="text" name="ansa" style="border:none;"/>
+<input type="radio" name="qp" value="b"/>
+<input type="text" name="ansb" style="border:none;"/>
+<input type="radio" name="qp" value="c"/>
+<input type="text" name="ansc" style="border:none;"/>
+<input type="radio" name="qp" value="d"/>
+<input type="text" name="ansd" style="border:none;"/>
+<br/>
+<input type="submit" value="CHECK"/> <br/>
+<input type="text" value="0" name="score">
+</form>
+</body>
+</html>

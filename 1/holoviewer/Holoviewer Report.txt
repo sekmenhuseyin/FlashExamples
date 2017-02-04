@@ -1,0 +1,99 @@
+Film Raporu
+------------
+KareKare #    Kare Byte    Total Byte    Sayfa
+----------    ---------    ----------    ----------------
+    1         72637          72637        Scene 1
+
+Sayfa                       Þekil Byte    Metin Byte
+------------------------    ----------    ----------
+Scene 1                        5073           363
+
+Sayfa                       Sembol Byte    Metin Byte
+------------------------    -----------    ----------
+pic_bg                         1131             0
+pic_arrow                       370             0
+down                              0             0
+grow                            276             0
+left                              0             0
+movie clip                     2805           212
+reset                          4108            84
+right                             0             0
+shrink                          315             0
+Tween 1                           0             0
+up                               69             0
+pic_ballshade                   103             0
+pic_acf                        1018             0
+pic_shading4                     84             0
+pic_rivit                         0             0
+pic_vent                         47             0
+pic_sideshading                  87             0
+pic_KaiLensFX                     0             0
+Band                              0             0
+LightButton                       0             0
+LCD                               0             0
+Sqeeker                         997             0
+pic_Wire1                       378             0
+but_DomeLight                   843             0
+pic_DomeLight                   121             0
+pic_glow                        147             0
+mov_DomeLightOn                   0             0
+mov_DomeLightBlue                 0             0
+Mov_KaiLensFX                     0             0
+pic_Biomount                      0             0
+pic_OvalShade                     0             0
+pic_Bio                           0             0
+mov_GaugeMovie                 5218             0
+mov_Speedometer                2412           392
+pic_Shadow3                      99             0
+pic_Swoosh                        0             0
+mov_needle                      766             0
+pic_Resist                      417             0
+pic_ElecWire1                    67             0
+pic_elec1                        70             0
+pic_Chip1                        60             0
+pic_ElecTag1                    175            81
+pic_Diode1                      241             0
+pic_Chip2                         0           128
+pic_ElecTag2                    122             0
+pic_ElecContact1                 69             0
+pic_ElecWord2                     0            38
+pic_ElecWord3                     0            48
+pic_Chip3                        54             0
+pic_ElecPin1                     46             0
+pic_Metal1                       77             0
+pic_ElecWord1                     0            43
+pic_Diode2                      256             0
+mov_Eyes                        804             0
+pic_Bar1                        224             0
+pic_Eyebrow                      74             0
+pic_ScrewSmall                  158             0
+pic_Eyeball                     460             0
+pic_limb                        583             0
+ScrollBar                         0             0
+ScrollBarSlider                   0             0
+ScrollBarButton                   0             0
+ScrollUp                          0             0
+ScrollDown                        0             0
+mov_DrillBit                    722             0
+mov_FlightBall                 2542             0
+pic_Swoosh 2                    214             0
+
+Bitmap                     Sýkýþtýrýlmýþ    Sýkýþtýrma
+-----------------------    -------------  -------  ----------
+Screen.png                      6012      746496   JPEG Kalitesi=50
+
+Tweenlemiþ Þekiller: 1324 bytes
+
+Olay Sesleri: 22KHz Stereo 16 kbps MP3
+
+Ses adý                 Byte        Format    
+--------------------    --------    ----------
+snd_Blip                      371         5KHz Mono 3 bit ADPCM
+Blink.wav                    1706        22KHz Mono 3 bit ADPCM
+
+
+Ses adý                 Byte        Format    
+--------------------    --------    ----------
+Arial Black                  1122         -126CKMOPQRSU
+Arial Narrow                 2531         %-.0123456789AEGIKLMNOPQRSTWertv~
+Arial                         920        Zdeghimotwxy

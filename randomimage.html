@@ -1,0 +1,23 @@
+<html>
+<head>
+<title> random pictures </title>
+<script language="javascript">
+var slides=new Array();
+slides = [
+ "frog.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/frog.gif*/,
+ "heart.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/heart.gif*/,
+ "bird.gif"/*tpa=http://newmedia.purchase.edu/~Jeanine/bird.gif*/
+];
+
+function show() {
+var choice;
+choice = Math.floor(Math.random()*slides.length);
+document.place.src=slides[choice];
+}
+</script>
+</head>
+<body onload="show();">
+<img name="place">
+rest of page
+</body>
+</html>

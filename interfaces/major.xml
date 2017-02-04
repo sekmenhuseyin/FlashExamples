@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="makemajor1.xsl" type="text/xsl"?>
+<major>
+<name>Math/Computer Science</name>
+<required cn="MAT1400">Calculus I</required>
+<required cn="MAT1500">Computer Science I</required>
+<required cn="MAT3100">Linear Algebra</required>
+<option num="1">
+ <course cn="MAT2100">Data Structures</course>
+ <course cn="MAT2400">Differential Equations</course>
+</option>
+<option num="3">
+ <course cn="MAT3100">Creating Dynamic Web Documents</course>
+ <course cn="MAT3200">Creating databases for web applications</course>
+ <course cn="MAT3420">Creating interfaces</course>
+ <course cn="MAT3567">Abstract Algebra</course>
+</option>
+</major>
